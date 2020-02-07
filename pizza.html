@@ -1,173 +1,209 @@
-<html>
+<!-- SOURCES: 
+  https://getbootstrap.com/docs/4.3/
+  https://jquery.com/download/ (3.4.1)
+  https://pixabay.com/  (For all images used for this project)
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src = "pizza.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Build Your Own Pizza's Website</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/context.css">
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
+
 <body>
-
-<div class="container" style="margin-top:30px">
-  <div class="row">
-    <div class="col-sm" style="">
-     <h3 style="margin-left:30%">Create Your Pizza Order</h3>
-    <div style="margin-left:35%; margin-top:40px">
-         <button id="createPizzaButton" style="width:200px; height:50px" class="btn btn-info" data-toggle="modal" data-target="#addPizzaModal"> Create Pizza</button>
-   </div>
-     <div style="margin-left:30%">
-     <img style="margin-top:40px; opacity:.5; height:60%; width:50%" src="https://lh3.googleusercontent.com/proxy/1N4fYp37Q70UCl7GmW_9i3zDwPhweXMoLSZTl60EVR-ORcTRZEyfYoRjN15dCAo12yUNlJRxkRsiXv5AMIB45aQZ33So5_U" alt="Italian Trulli">
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-light navbar-static-top">
+    <div class="container">
+      <a class="navbar-brand active" href="about.html">Build Your Own Pizza</a>
+      <button class="navbar-toggler" type="button" data-target="#navProject" aria-controls="navProject"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navProject">
+        <div class="navbar-nav ml-auto">
+          <a class="nav-item mx-auto nav-link" href="index.html"><span class="sr-only"></span></a>
+          <a class="nav-item mx-auto nav-link" href="about.html">About <span class="sr-only">(current)</span></a>
+          <a class="nav-item mx-auto nav-link" href="pizza.html">Pizza</a>
+          <a class="nav-item mx-auto nav-link" href="employee.html">Employee</a>
+        </div>
       </div>
     </div>
-
-    <div class="col-sm-3" style="border: solid grey 1px; height:60vh">
-      <div>
-         <b>Cart</b>
+  </nav>
+  <!-- END OF NAVIGATION -->
+  <div class="container" style="margin-top:30px">
+    <div class="row">
+      <div class="col-sm" style="">
+       <h3 style="margin-left:30%">Create Your Pizza Order</h3>
+      <div style="margin-left:35%; margin-top:40px">
+           <button id="createPizzaButton" style="width:200px; height:50px" class="btn btn-info" data-toggle="modal" data-target="#addPizzaModal"> Create Pizza</button>
      </div>
-     <div id="cartContainer">
-         <div id = "cartContents">
-             You have <span id="cartCount">0</span> pizzas in your cart:
-         <div>
-         <div id = "cartContents">
-         </div>
+       <div style="margin-left:30%">
+       <img style="margin-top:40px; opacity:.5; height:60%; width:50%" src="https://lh3.googleusercontent.com/proxy/1N4fYp37Q70UCl7GmW_9i3zDwPhweXMoLSZTl60EVR-ORcTRZEyfYoRjN15dCAo12yUNlJRxkRsiXv5AMIB45aQZ33So5_U" alt="Italian Trulli">
+        </div>
+      </div>
+  
+      <div class="col-sm-3" style="border: solid grey 1px; height:60vh">
+        <div>
+           <b>Cart</b>
        </div>
-    </div>
-     <button id="submitOrderButton" class="btn btn-info" style="position:absolute; bottom:10px">Submit Order</button>
-  </div>
-</div>
-
-<!-- Modal contains dropdowns for adding the items to the pizza  -->
-<div class="modal fade" id="addPizzaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Build Your Pizza from the options below</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div  class="modal-body">
-
-          <!-- dropdown for pizza size selection  -->
-         <div>Please select the size of your pizza </div>
-        <select id="pizzaSizeDropdown" style="border-radius:4px; margin-bottom:25px">
-            <option value="default" selected disabled>
-                --Pizza Size--
-            </option>
-
-        </select>
-
-         <!-- dropdowns for pizza topping selection-->
-         <div>
-        <div>Please select your topping(s)</div>
-       <select id="topping1Dropdown" style="border-radius:4px">
-           <option value="default" selected disabled>
-               --Topping1--
-           </option>
-       </select>
-       <select id="topping2Dropdown" style="border-radius:4px">
-           <option value="default" selected disabled>
-               --Topping2--
-           </option>
-       </select>
-       <select id="topping3Dropdown" style="border-radius:4px">
-           <option value="default" selected disabled>
-               --Topping3--
-           </option>
-       </select>
-      </div>
-
-       <!-- textbox for -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="addToCartButton" type="button" class="btn btn-primary" data-dismiss="modal" disabled>Add to Cart</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal contains dropdowns for updating an pizza order  -->
-<div class="modal fade" id="editPizzaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Your Pizza</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-          <!-- dropdown for pizza size selection  -->
-         <div>Please select the size of your pizza </div>
-         <select id="updatePizzaSizeDropdown" style="border-radius:4px; margin-bottom:25px">
-            <option value="default" selected disabled>
-                --Pizza Size--
-            </option>
-
-         </select>
-
-         <!-- dropdowns for pizza topping selection-->
-         <div>
-         <div>Please select your topping(s)</div>
-         <select id="updateTopping1Dropdown" style="border-radius:4px">
-           <option value="default" selected disabled>
-               --Topping1--
-           </option>
-         </select>
-         <select id="updateTopping2Dropdown" style="border-radius:4px">
-           <option value="default" selected disabled>
-               --Topping2--
-           </option>
-         </select>
-         <select id="updateTopping3Dropdown" style="border-radius:4px">
-           <option value="default" selected disabled>
-               --Topping3--
-           </option>
-         </select>
+       <div id="cartContainer">
+           <div id = "cartContents">
+               You have <span id="cartCount">0</span> pizzas in your cart:
+           <div>
+           <div id = "cartContents">
+           </div>
          </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="savePizzaChanges" type="button" class="btn btn-primary" data-dismiss="modal" >Save Changes</button>
-        <span id="currentPizzaBeingUpdated"></span>
+       <button id="submitOrderButton" class="btn btn-info" style="position:absolute; bottom:10px">Submit Order</button>
+    </div>
+  </div>
+  
+  <!-- Modal contains dropdowns for adding the items to the pizza  -->
+  <div class="modal fade" id="addPizzaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Build Your Pizza from the options below</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div  class="modal-body">
+  
+            <!-- dropdown for pizza size selection  -->
+           <div>Please select the size of your pizza </div>
+          <select id="pizzaSizeDropdown" style="border-radius:4px; margin-bottom:25px">
+              <option value="default" selected disabled>
+                  --Pizza Size--
+              </option>
+  
+          </select>
+  
+           <!-- dropdowns for pizza topping selection-->
+           <div>
+          <div>Please select your topping(s)</div>
+         <select id="topping1Dropdown" style="border-radius:4px">
+             <option value="default" selected disabled>
+                 --Topping1--
+             </option>
+         </select>
+         <select id="topping2Dropdown" style="border-radius:4px">
+             <option value="default" selected disabled>
+                 --Topping2--
+             </option>
+         </select>
+         <select id="topping3Dropdown" style="border-radius:4px">
+             <option value="default" selected disabled>
+                 --Topping3--
+             </option>
+         </select>
+        </div>
+  
+         <!-- textbox for -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="addToCartButton" type="button" class="btn btn-primary" data-dismiss="modal" disabled>Add to Cart</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-
-<!-- Modal for when the user checks out and submits their order   -->
-<div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Please review your order and submit</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-                <div id="orderReview">
-
-                </div>
-                    <div style="margin-top:10px"> Please provide your name </div>
-                    <div style="margin-bottom:1px"> <input id="customerName" type="text" placeholder="Name"/> </div>
-                    <div id="nameValidationMessage" style="color:red; display:none"> Name is a required field </div>
-
-                     <label><input  id="agreeCheckbox" type="checkbox" required="required" style="margin-top:15px" /> I agree to not be a lousy customer</label>
-                     <div id="checkboxValidationMessage" style="color:red; display:none"> You must agree to the terms and conditions</div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="submitFinalOrderButton" type="button" class="btn btn-primary"  >Submit</button>
-        <span id="currentPizzaBeingUpdated"></span>
+  
+  
+  <!-- Modal contains dropdowns for updating an pizza order  -->
+  <div class="modal fade" id="editPizzaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Your Pizza</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+  
+            <!-- dropdown for pizza size selection  -->
+           <div>Please select the size of your pizza </div>
+           <select id="updatePizzaSizeDropdown" style="border-radius:4px; margin-bottom:25px">
+              <option value="default" selected disabled>
+                  --Pizza Size--
+              </option>
+  
+           </select>
+  
+           <!-- dropdowns for pizza topping selection-->
+           <div>
+           <div>Please select your topping(s)</div>
+           <select id="updateTopping1Dropdown" style="border-radius:4px">
+             <option value="default" selected disabled>
+                 --Topping1--
+             </option>
+           </select>
+           <select id="updateTopping2Dropdown" style="border-radius:4px">
+             <option value="default" selected disabled>
+                 --Topping2--
+             </option>
+           </select>
+           <select id="updateTopping3Dropdown" style="border-radius:4px">
+             <option value="default" selected disabled>
+                 --Topping3--
+             </option>
+           </select>
+           </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="savePizzaChanges" type="button" class="btn btn-primary" data-dismiss="modal" >Save Changes</button>
+          <span id="currentPizzaBeingUpdated"></span>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
+  
+  
+  <!-- Modal for when the user checks out and submits their order   -->
+  <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Please review your order and submit</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                  <div id="orderReview">
+  
+                  </div>
+                      <div style="margin-top:10px"> Please provide your name </div>
+                      <div style="margin-bottom:1px"> <input id="customerName" type="text" placeholder="Name"/> </div>
+                      <div id="nameValidationMessage" style="color:red; display:none"> Name is a required field </div>
+  
+                       <label><input  id="agreeCheckbox" type="checkbox" required="required" style="margin-top:15px" /> I agree to not be a lousy customer</label>
+                       <div id="checkboxValidationMessage" style="color:red; display:none"> You must agree to the terms and conditions</div>
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="submitFinalOrderButton" type="button" class="btn btn-primary"  >Submit</button>
+          <span id="currentPizzaBeingUpdated"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+  <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="js/pizza.js."></script>
 </body>
 </html>
