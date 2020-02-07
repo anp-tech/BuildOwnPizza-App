@@ -1,0 +1,82 @@
+<!-- SOURCES: 
+  https://getbootstrap.com/docs/4.3/
+  https://jquery.com/download/ (3.4.1)
+  https://pixabay.com/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Build Your Own Pizza's Website</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/context.css">
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-light navbar-static-top">
+    <div class="container">
+      <a class="navbar-brand active" href="about.html">Build Your Own Pizza</a>
+      <button class="navbar-toggler" type="button" data-target="#navProject" aria-controls="navProject"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navProject">
+        <div class="navbar-nav ml-auto">
+          <a class="nav-item mx-auto nav-link" href="index.html"><span class="sr-only"></span></a>
+          <a class="nav-item mx-auto nav-link" href="about.html">About <span class="sr-only">(current)</span></a>
+          <a class="nav-item mx-auto nav-link" href="pizza.html">Pizza</a>
+          <a class="nav-item mx-auto nav-link" href="employee.html">Employee</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- END OF NAVIGATION -->
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <h2 class="text-danger" style="font-weight:bold; line-height: 3.75rem; padding-top: 1.5rem;">Welcome! Thank You for Visiting Our Website</h2>   
+      </div>
+    </div>
+  </div>
+  <!-- CAROUSEL -->
+  <div id="myCarouselSlide" class="carousel slide">
+    <ol class="carousel-indicators">
+      <li class="slide1 active"></li>
+      <li class="slide2"></li>
+      <li class="slide3"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active" style="background-image:url(img/project.jpg);background-position: 70% 30%;">
+        <div class="carousel-caption text-center" style=" top: 0%;">
+        </div>
+      </div>
+      <div class="carousel-item" style="background-image:url(img/project1.jpg);background-position: 9% 91%;">
+        <div class="carousel-caption text-center" style="top: 0%;">
+        </div>
+      </div>
+      <div class="carousel-item" style="background-image:url(img/project2.jpg);background-position: 30% 70%;">
+        <div class="carousel-caption text-center" style="top: 0%;">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#myCarouselSlide" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#myCarouselSlide" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  <!-- END OF CAROUSEL -->
+  <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="js/about.js"></script>
+</body>
+</html>
