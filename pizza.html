@@ -1,4 +1,4 @@
-<!-- SOURCES: 
+<!-- SOURCES:
   https://getbootstrap.com/docs/4.3/
   https://jquery.com/download/ (3.4.1)
   https://pixabay.com/  (For all images used for this project)
@@ -14,9 +14,13 @@
   <title>Build Your Own Pizza's Website</title>
   <!-- CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/context.css">
+
   <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="js/pizza.js"></script>
 </head>
 
 <body>
@@ -47,10 +51,9 @@
            <button id="createPizzaButton" style="width:200px; height:50px" class="btn btn-info" data-toggle="modal" data-target="#addPizzaModal"> Create Pizza</button>
      </div>
        <div style="margin-left:30%">
-       <img style="margin-top:40px; opacity:.5; height:60%; width:50%" src="https://lh3.googleusercontent.com/proxy/1N4fYp37Q70UCl7GmW_9i3zDwPhweXMoLSZTl60EVR-ORcTRZEyfYoRjN15dCAo12yUNlJRxkRsiXv5AMIB45aQZ33So5_U" alt="Italian Trulli">
         </div>
       </div>
-  
+
       <div class="col-sm-3" style="border: solid grey 1px; height:60vh">
         <div>
            <b>Cart</b>
@@ -66,7 +69,7 @@
        <button id="submitOrderButton" class="btn btn-info" style="position:absolute; bottom:10px">Submit Order</button>
     </div>
   </div>
-  
+
   <!-- Modal contains dropdowns for adding the items to the pizza  -->
   <div class="modal fade" id="addPizzaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -78,16 +81,16 @@
           </button>
         </div>
         <div  class="modal-body">
-  
+
             <!-- dropdown for pizza size selection  -->
            <div>Please select the size of your pizza </div>
           <select id="pizzaSizeDropdown" style="border-radius:4px; margin-bottom:25px">
               <option value="default" selected disabled>
                   --Pizza Size--
               </option>
-  
+
           </select>
-  
+
            <!-- dropdowns for pizza topping selection-->
            <div>
           <div>Please select your topping(s)</div>
@@ -107,7 +110,7 @@
              </option>
          </select>
         </div>
-  
+
          <!-- textbox for -->
         </div>
         <div class="modal-footer">
@@ -117,8 +120,8 @@
       </div>
     </div>
   </div>
-  
-  
+
+
   <!-- Modal contains dropdowns for updating an pizza order  -->
   <div class="modal fade" id="editPizzaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -130,16 +133,16 @@
           </button>
         </div>
         <div class="modal-body">
-  
+
             <!-- dropdown for pizza size selection  -->
            <div>Please select the size of your pizza </div>
            <select id="updatePizzaSizeDropdown" style="border-radius:4px; margin-bottom:25px">
               <option value="default" selected disabled>
                   --Pizza Size--
               </option>
-  
+
            </select>
-  
+
            <!-- dropdowns for pizza topping selection-->
            <div>
            <div>Please select your topping(s)</div>
@@ -168,8 +171,8 @@
       </div>
     </div>
   </div>
-  
-  
+
+
   <!-- Modal for when the user checks out and submits their order   -->
   <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -182,15 +185,15 @@
         </div>
         <div class="modal-body">
                   <div id="orderReview">
-  
+
                   </div>
                       <div style="margin-top:10px"> Please provide your name </div>
                       <div style="margin-bottom:1px"> <input id="customerName" type="text" placeholder="Name"/> </div>
                       <div id="nameValidationMessage" style="color:red; display:none"> Name is a required field </div>
-  
+
                        <label><input  id="agreeCheckbox" type="checkbox" required="required" style="margin-top:15px" /> I agree to not be a lousy customer</label>
                        <div id="checkboxValidationMessage" style="color:red; display:none"> You must agree to the terms and conditions</div>
-  
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -201,9 +204,5 @@
     </div>
   </div>
   </body>
-  <!-- JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="js/pizza.js."></script>
-</body>
+
 </html>

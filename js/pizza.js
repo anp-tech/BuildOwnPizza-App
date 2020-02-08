@@ -4,6 +4,8 @@ var Toppings = null         //array of pizza toppings as defined in the database
 var Cart = []               //array of Pizza objects the the user has created.
 var CustomerOrders = null;  //an object of type Order that tracks the created pizzas in the cart.
 
+
+//onload event handler
 window.onload = async ()=>{
 
     //Make AJAX request to load pizza data
@@ -33,6 +35,7 @@ window.onload = async ()=>{
 }
 
 
+//Builds the toppings dropdowns from the list of toppings
 function BuildToppingsDropdowns(){
 
     var toppingDropdowns = ["#topping1Dropdown", "#topping2Dropdown", "#topping3Dropdown",
@@ -140,6 +143,7 @@ function ValidateOrder(){
 }
 
 
+//Takes the customers order and makes an AJAX post to update the database
 function SubmitOrderAjax(){
 
 }
@@ -179,6 +183,7 @@ function LoadCheckoutModal(){
 
 
 }
+
 
 //adds event listeners for the dropdowns
 function BindDropdowns(){
