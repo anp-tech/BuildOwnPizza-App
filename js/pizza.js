@@ -105,7 +105,21 @@ function BindButtons(){
 
     $("#submitFinalOrderButton").click(function(){
 
+         //add even listener to validate when user clicks away from text area
+         $("#customerName").keyup(function(e){
+            if(e.keyCode === 13){
+                ValidateOrder();
+            }
+         });
 
+          $("#customerName").blur(function(e){
+              ValidateOrder();
+          })
+
+          //validate the "I agree textbox"
+          $("#agreeCheckbox").change(function(e){
+             ValidateOrder();
+          });
 
          //validate the order and submit
          if(ValidateOrder()){
@@ -124,6 +138,7 @@ function ValidateOrder(){
     isValid = true;
     if(name != undefined && name != null && name.length > 2){
         isValid = true;
+        $("#nameValidationMessage").css("display", "none")
     }
     else{
         $("#nameValidationMessage").css("display", "block")
@@ -131,6 +146,7 @@ function ValidateOrder(){
     }
     if(check == true){
         isValid = true;
+        $("#checkboxValidationMessage").css("display", "none")
     }
     else{
         isValid = false;
@@ -145,7 +161,7 @@ function ValidateOrder(){
 
 //Takes the customers order and makes an AJAX post to update the database
 function SubmitOrderAjax(){
-
+    window.location.reload(true);
 }
 
 
