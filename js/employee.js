@@ -7,7 +7,7 @@ function check() {
     document.getElementById("hasBeenMade").checked = true;
   }
   
-  function uncheck() {
+function uncheck() {
     document.getElementById("hasBeenMade").checked = false;
   }
 
