@@ -177,7 +177,7 @@ function LoadCheckoutModal(){
     }
     domRef.html(innerHtml)
 
-    //remove any showing validation massages
+    //remove any showing validation messages
     $("#nameValidationMessage").css("display", "none")
     $("#checkboxValidationMessage").css("display", "none")
 
@@ -279,7 +279,7 @@ function GetPizzaSizesAJAX(){
 
 //makes ajax GET request to get all the available pizza toppings. Returns an array
 function GetPizzaToppingsAJAX(){
-    return  ["pepperoni", "Chicken", "Bacon", "Artichoke"];
+    return  ["pepperoni", "chicken", "bacon", "artichoke"];
 }
 
 
