@@ -1,7 +1,8 @@
 <!-- SOURCES: 
   https://getbootstrap.com/docs/4.3/
   https://jquery.com/download/ (3.4.1)
-  https://pixabay.com/  (For all images used for this project)
+  https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_checkbox_checked2
+  https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_table_deleterow
 -->
 
 <!DOCTYPE html>
@@ -16,12 +17,16 @@
   <link rel="stylesheet" href="css/context.css">
   <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+   <!-- JS -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <script src="js/employee.js"></script>
 </head>
 <body>
   <!-- NAVIGATION -->
   <nav class="navbar navbar-expand-md navbar-dark bg-light navbar-static-top">
     <div class="container">
-      <a class="navbar-brand active" href="about.html">Build Your Own Pizza</a>
+      <a class="navbar-brand active" href="index.html">Build Your Own Pizza</a>
       <button class="navbar-toggler" type="button" data-target="#navProject" aria-controls="navProject"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,39 +35,46 @@
         <div class="navbar-nav ml-auto">
           <a class="nav-item mx-auto nav-link" href="index.html"><span class="sr-only"></span></a>
           <a class="nav-item mx-auto nav-link" href="about.html">About <span class="sr-only">(current)</span></a>
-          <a class="nav-item mx-auto nav-link" href="pizza.html">Pizza</a>
+          <a class="nav-item mx-auto nav-link" href="pizza.html">Customized Pizza</a>
           <a class="nav-item mx-auto nav-link" href="employee.html">Employee</a>
         </div>
       </div>
     </div>
   </nav>
   <!-- END OF NAVIGATION -->
-  <div class="container">
+
+<div class="container"> 
     <div class="row">
       <div class="col text-center">
-      <h2 style="padding-top: 1.5rem">Update or Delete Orders (Sample)</h2>
+      <h2 style="padding-top: 1.5rem">Delete Orders After Pizza Pick-Up</h2>
+      <p style="padding-top: 1.5rem"><small>(Note: the table will be populated from database, below data is just a sample)</small></p>
       <table class="col text-center">
          <thead>
            <tr>
-             <th> Pizza Number </th>
-             <th> Customer Name </th>
-             <th> Update </th>
+             <th>Timestamp</th>
+             <th>Customer Name</th>
+             <th>Size</th>
+             <th>Topping 1</th>
+             <th>Topping 2</th>
+             <th>Topping 3</th>
+             <th> Has Been Made </th>
              <th> Delete </th>
            </tr>
          </thead>
-         <tbody>
+         <tbody id="deleteByRow">
            <tr class="body">
-             <td> Pizza1 </td>
-             <td> David</td>
-             <td> 
-               <form>
-                 <input type="button" value="Update">
-               </form>
-             </td>
-             <td> 
-               <form>
-                 <input type="button" value="Delete">
-               </form>
+             <td>2020-02-18 17:30:25</td>
+             <td>John Doe</td>
+             <td>Medium</td>
+             <td>pepperoni</th>
+             <td>Bacon</th>
+             <td></th>
+             <td>
+              <input type="checkbox" id="hasBeenMade">
+              <button onclick="check()">Check</button>
+              <button onclick="uncheck()">Uncheck</button></td>
+             <td>   
+              <button onclick="toDelete()">Delete</button>
              </td>
            </tr>
          </tbody>
@@ -70,8 +82,6 @@
        </div>
       </div>
      </div>
-  <!-- JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
 </body>
 </html>
