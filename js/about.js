@@ -9,7 +9,7 @@ $(document).ready(function () {
   });
 
   $('#myCarouselSlide').carousel({
-    interval: 3000
+    interval: 2500
   });
 
   $('.slide1').click(function () {
