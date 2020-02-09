@@ -1,7 +1,6 @@
 <!-- SOURCES:
   https://getbootstrap.com/docs/4.3/
   https://jquery.com/download/ (3.4.1)
-  https://pixabay.com/  (For all images used for this project)
 -->
 
 <!DOCTYPE html>
@@ -17,7 +16,7 @@
   <link rel="stylesheet" href="css/context.css">
   <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-
+   <!-- JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="js/pizza.js"></script>
@@ -27,7 +26,7 @@
   <!-- NAVIGATION -->
   <nav class="navbar navbar-expand-md navbar-dark bg-light navbar-static-top">
     <div class="container">
-      <a class="navbar-brand active" href="about.html">Build Your Own Pizza</a>
+      <a class="navbar-brand active" href="index.html">Build Your Own Pizza</a>
       <button class="navbar-toggler" type="button" data-target="#navProject" aria-controls="navProject"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -36,7 +35,7 @@
         <div class="navbar-nav ml-auto">
           <a class="nav-item mx-auto nav-link" href="index.html"><span class="sr-only"></span></a>
           <a class="nav-item mx-auto nav-link" href="about.html">About <span class="sr-only">(current)</span></a>
-          <a class="nav-item mx-auto nav-link" href="pizza.html">Pizza</a>
+          <a class="nav-item mx-auto nav-link" href="pizza.html">Customized Pizza</a>
           <a class="nav-item mx-auto nav-link" href="employee.html">Employee</a>
         </div>
       </div>
@@ -45,7 +44,7 @@
   <!-- END OF NAVIGATION -->
   <div class="container" style="margin-top:30px">
     <div class="row">
-      <div class="col-sm" style="">
+      <div class="col-sm">
        <h3 style="margin-left:30%">Create Your Pizza Order</h3>
       <div style="margin-left:35%; margin-top:40px">
            <button id="createPizzaButton" style="width:200px; height:50px" class="btn btn-info" data-toggle="modal" data-target="#addPizzaModal"> Create Pizza</button>
@@ -94,6 +93,7 @@
            <!-- dropdowns for pizza topping selection-->
            <div>
           <div>Please select your topping(s)</div>
+          <p><small>(Note: data will be populated from database, below is just a sample)</small><p>
          <select id="topping1Dropdown" style="border-radius:4px">
              <option value="default" selected disabled>
                  --Topping1--
