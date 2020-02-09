@@ -1,7 +1,6 @@
 <!-- SOURCES: 
   https://getbootstrap.com/docs/4.3/
   https://jquery.com/download/ (3.4.1)
-  https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_checkbox_checked2
   https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_table_deleterow
 -->
 
@@ -48,7 +47,7 @@
       <div class="col text-center">
       <h2 style="padding-top: 1.5rem">Delete Orders After Pizza Pick-Up</h2>
       <p style="padding-top: 1.5rem"><small>(Note: the table will be populated from database, below data is just a sample)</small></p>
-      <table class="col text-center">
+      <table class="col text-center; table table-bordered">
          <thead>
            <tr>
              <th>Timestamp</th>
@@ -63,21 +62,45 @@
          </thead>
          <tbody id="deleteByRow">
            <tr class="body">
-             <td>2020-02-18 17:30:25</td>
+             <td>00:30:12 ago</td>
              <td>John Doe</td>
-             <td>Medium</td>
+             <td>small</td>
              <td>pepperoni</th>
-             <td>Bacon</th>
              <td></th>
+             <td></td>
              <td>
-              <input type="checkbox" id="hasBeenMade">
-              <button onclick="check()">Check</button>
-              <button onclick="uncheck()">Uncheck</button></td>
+              <input type="checkbox">
              <td>   
-              <button onclick="toDelete()">Delete</button>
+              <button onclick="toDelete()">Delete</button> 
              </td>
            </tr>
-         </tbody>
+          <tr class="body">
+            <td>01:03:01 ago</td>
+            <td>Thomas Smith</td>
+            <td>medium</td>
+            <td>chicken</th>
+            <td>bacon</th>
+            <td></td>
+            <td>
+             <input type="checkbox">
+            <td>   
+             <button onclick="toDelete()">Delete</button> 
+            </td>
+          </tr>
+          <tr class="body">
+            <td>02:08:09 ago</td>
+            <td>Jacky Wong</td>
+            <td>large</td>
+            <td>bacon</th>
+            <td>pepperoni</th>
+            <td>artichoke</td>
+            <td>
+             <input type="checkbox">
+            <td>   
+             <button onclick="toDelete()">Delete</button> 
+            </td>
+          </tr>
+        </tbody>
        </table>
        </div>
       </div>
