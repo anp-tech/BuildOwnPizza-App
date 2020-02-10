@@ -1,10 +1,12 @@
 /* SOURCES: 
-  https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_table_deleterow
+  https://stackoverflow.com/questions/13241005/add-delete-row-from-a-table
 */
 
-function toDelete() {
-    document.getElementById("deleteByRow").deleteRow(0);
-  }
+function toDelete(btn) {
+
+  var byRow = btn.parentNode.parentNode;
+  byRow.parentNode.removeChild(byRow);
+}
 
 
 
