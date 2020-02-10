@@ -1,7 +1,7 @@
 <!-- SOURCES:
   https://getbootstrap.com/docs/4.3/
   https://jquery.com/download/ (3.4.1)
-  https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_table_deleterow
+  https://stackoverflow.com/questions/13241005/add-delete-row-from-a-table
 -->
 
 <!DOCTYPE html>
@@ -60,7 +60,7 @@
              <th> Delete </th>
            </tr>
          </thead>
-         <tbody id="deleteByRow">
+         <tbody>
            <tr class="body">
              <td>00:30:12 ago</td>
              <td>John Doe</td>
@@ -71,7 +71,7 @@
              <td>
               <input type="checkbox">
              <td>
-              <button onclick="toDelete()">Delete</button>
+              <button onclick="toDelete(this)">Delete</button>
              </td>
            </tr>
           <tr class="body">
@@ -84,7 +84,7 @@
             <td>
              <input type="checkbox">
             <td>
-             <button onclick="toDelete()">Delete</button>
+             <button onclick="toDelete(this)">Delete</button>
             </td>
           </tr>
           <tr class="body">
@@ -97,7 +97,7 @@
             <td>
              <input type="checkbox">
             <td>
-             <button onclick="toDelete()">Delete</button>
+             <button onclick="toDelete(this)">Delete</button>
             </td>
           </tr>
         </tbody>
