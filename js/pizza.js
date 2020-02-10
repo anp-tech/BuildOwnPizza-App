@@ -225,7 +225,6 @@ function AddPizzaToCart(){
 
 }
 
-
 //builds the html to display in the cart based on the CustomerOrders object.
 function BuildCartHtml(){
     var domRef = $("#cartContents");
@@ -235,8 +234,8 @@ function BuildCartHtml(){
             var name = order.Name;
             var itemHtml = '<div id="'+name+'">';
             itemHtml += order.Name;
-            itemHtml += '<button onclick = UpdatePizza('+name+') class=" btn btn-info" style="font-size:12; padding:1px">Update</button>';
-            itemHtml += '<button onclick = DeletePizza('+name+') class=" btn btn-info" style="font-size:12; padding:1px; margin-left:2px">Delete</button>';
+            itemHtml += '<button onclick = UpdatePizza('+name+') class=" btn btn-info" style="font-size:12; padding:1px; background:#B43A10">Update</button>';
+            itemHtml += '<button onclick = DeletePizza('+name+') class=" btn btn-info" style="font-size:12; padding:1px; margin-left:2px; background:#B43A10">Delete</button>';
             itemHtml +='</div>'
             outerHtml += itemHtml;
 

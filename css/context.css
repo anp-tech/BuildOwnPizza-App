@@ -50,3 +50,7 @@ body {
 .carousel-item.active, .carousel-item-prev, .carousel-item-next {
     transition: transform 4s ease, opacity 1s ease-out;
 }
+
+.genericButton{
+     background:#B43A10
+}
