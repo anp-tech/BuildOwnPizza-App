@@ -125,6 +125,7 @@ function BindButtons(){
          if(ValidateOrder()){
              SubmitOrderAjax();
              $('#checkoutModal').modal('hide');
+             window.location.href = "index.html"
          }
     });
 }
@@ -136,7 +137,7 @@ function ValidateOrder(){
     var check = $("#agreeCheckbox").is(":checked");
     console.log(check)
     isValid = true;
-    if(name != undefined && name != null && name.length > 2){
+    if(name != undefined && name != null && name.length > 0){
         isValid = true;
         $("#nameValidationMessage").css("display", "none")
     }
@@ -196,7 +197,6 @@ function LoadCheckoutModal(){
     //remove any showing validation messages
     $("#nameValidationMessage").css("display", "none")
     $("#checkboxValidationMessage").css("display", "none")
-
 
 }
 

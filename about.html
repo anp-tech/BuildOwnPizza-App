@@ -1,4 +1,4 @@
-<!-- SOURCES: 
+<!-- SOURCES:
   https://getbootstrap.com/docs/4.3/
   https://jquery.com/download/ (3.4.1)
   https://pixabay.com/
@@ -19,31 +19,22 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="js/about.js"></script>
+
+  <!-- load the nav bar-->
+<script>
+    $(document).ready(function(){
+             $("#navBar").load("layout.html")
+    });
+ </script>
+
+
 </head>
 <body>
-  <!-- NAVIGATION -->
-  <nav class="navbar navbar-expand-md navbar-dark bg-light navbar-static-top">
-    <div class="container">
-      <a class="navbar-brand active" href="index.html">Build Your Own Pizza</a>
-      <button class="navbar-toggler" type="button" data-target="#navProject" aria-controls="navProject"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navProject">
-        <div class="navbar-nav ml-auto">
-          <a class="nav-item mx-auto nav-link" href="index.html"><span class="sr-only"></span></a>
-          <a class="nav-item mx-auto nav-link" href="about.html">About <span class="sr-only">(current)</span></a>
-          <a class="nav-item mx-auto nav-link" href="pizza.html">Customized Pizza</a>
-          <a class="nav-item mx-auto nav-link" href="employee.html">Employee</a>
-        </div>
-      </div>
-    </div>
-  </nav>
-  <!-- END OF NAVIGATION -->
+  <span id="navBar"></span>
   <div class="container">
     <div class="row">
       <div class="col text-center">
-        <h2 class="text-danger" style="font-weight:bold; line-height: 3.75rem; padding-top: 1.5rem;">Welcome! Thank You for Visiting Our Website</h2>   
+        <h2 class="text-danger" style="font-weight:bold; line-height: 3.75rem; padding-top: 1.5rem;">Welcome! Thank You for Visiting Our Website</h2>
       </div>
     </div>
   </div>
