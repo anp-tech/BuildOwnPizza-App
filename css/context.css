@@ -7,6 +7,8 @@ body {
     background: rgb(151, 74, 22) !important;
 }
 
+.indent { margin-left: 50px; };
+
 .navbar-brand {
     padding-top: 0%;
     font-size: 1.4rem;
