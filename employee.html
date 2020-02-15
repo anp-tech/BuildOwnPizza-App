@@ -1,11 +1,9 @@
-<!-- SOURCES:
-  https://getbootstrap.com/docs/4.3/
-  https://jquery.com/download/ (3.4.1)
-  https://stackoverflow.com/questions/13241005/add-delete-row-from-a-table
+<!--
+This page is for employees to select which employee page they want to view:
+  1. pizzaOrders
+  2. updateToppings
+  3. updateSizes
 -->
-
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,84 +14,45 @@
   <link rel="stylesheet" href="css/context.css">
   <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-   <!-- JS -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-   <script src="js/employee.js"></script>
-   <!-- load the nav bar-->
-   <!-- load the nav bar-->
- <script>
-     $(document).ready(function(){
-              $("#navBar").load("layout.html")
+  <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+             $("#navBar").load("layout.html")
+    });
+
+
+    window.onload = ()=>{
+        $('#viewOrdersButton').on('click', function(event) {
+            window.location.href = "pizzaOrders.html"
+       });
+       $('#viewToppingsButton').on('click', function(event) {
+           window.location.href = "updateToppings.html"
+      });
+      $('#viewSizesButton').on('click', function(event) {
+          window.location.href = "updateSizes.html"
      });
-  </script>
+    }
+
+
+ </script>
+
+
 </head>
+
 <body>
    <span id="navBar"></span>
 
-<div class="container">
-    <div class="row">
-      <div class="col text-center">
-      <h2 style="padding-top: 1.5rem">Delete Orders After Pizza Pick-Up</h2>
-      <p style="padding-top: 1.5rem"><small>(Note: the table will be populated from database, below data is just a sample)</small></p>
-      <table class="col text-center; table table-bordered">
-         <thead>
-           <tr>
-             <th>Timestamp</th>
-             <th>Customer Name</th>
-             <th>Size</th>
-             <th>Topping 1</th>
-             <th>Topping 2</th>
-             <th>Topping 3</th>
-             <th> Has Been Made </th>
-             <th> Delete </th>
-           </tr>
-         </thead>
-         <tbody>
-           <tr class="body">
-             <td>00:30:12 ago</td>
-             <td>John Doe</td>
-             <td>small</td>
-             <td>pepperoni</td>
-             <td></td>
-             <td></td>
-             <td>
-              <input type="checkbox">
-             <td>
-              <button onclick="toDelete(this)">Delete</button>
-             </td>
-           </tr>
-          <tr class="body">
-            <td>01:03:01 ago</td>
-            <td>Thomas Smith</td>
-            <td>medium</td>
-            <td>chicken</td>
-            <td>bacon</td>
-            <td></td>
-            <td>
-             <input type="checkbox">
-            <td>
-             <button onclick="toDelete(this)">Delete</button>
-            </td>
-          </tr>
-          <tr class="body">
-            <td>02:08:09 ago</td>
-            <td>Jacky Wong</td>
-            <td>large</td>
-            <td>bacon</td>
-            <td>pepperoni</td>
-            <td>artichoke</td>
-            <td>
-             <input type="checkbox">
-            <td>
-             <button onclick="toDelete(this)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-       </table>
+   <h3 style="margin-left:35%; margin-top:50px">
+       Welcome to the Employees Page
+       </h3>
+       <div class="btn-group" role="group" aria-label="Basic example" style="margin-left:30%; margin-top:50px">
+         <button id="viewOrdersButton" style="width:170px; background:#B43A10; margin-left:10%; margin-right:20px; background:#B43A10; ; height:150px" class="btn btn-secondary">View Customer Orders</button>
+         <button id="viewToppingsButton" style="width:170px; background:#B43A10; margin-left:10% background:#B43A10;margin-right:20px ; height:150px" class="btn btn-secondary">Update Pizza Toppings</button>
+         <button id="viewSizesButton.html" style="width:170px; background:#B43A10; margin-left:10% background:#B43A10; ; height:150px" class="btn btn-secondary">Update Pizza Sizes </button>
        </div>
-      </div>
-     </div>
 
 </body>
 </html>
