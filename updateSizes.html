@@ -39,19 +39,15 @@
                     <div class="form-row align-items-center">
                         <div class="col-md-5 text-center mx-auto">
                             <label for="sizeName" style="padding-bottom: .5rem"><strong>Size Name</strong></label>
-                            <input type="text" class="form-control mb-2" id="sizeName"
-                                placeholder="Please enter small, medium, or large">
+                            <input required type="text" class="form-control mb-2" id="sizeName" placeholder="Enter Size Name">
                         </div>
                         <div class="col-md-5 text-center mx-auto">
                             <label for="sizePrice" style="padding-bottom: .5rem"><strong>Price</strong></label>
-                            <select id="sizePrice" class="form-control mb-2">
-                                <option value="10">small ($10)</option>
-                                <option value="13">medium ($13)</option>
-                                <option value="16">large ($16)</option>
+                            <input required type="number" class="form-control mb-2" id="price" min="0" value="0.00" step="0">
                             </select>
                         </div>
                         <div class="col-md-5 text-center mx-auto" style="padding-top: 1rem">
-                            <button type="submit" class="btn btn-primary" style="background:#B43A10">Submit</button>
+                            <button type="submit" class="btn btn-primary" style="background:#B43A10; width: 20%">Add</button>
                         </div>
                     </div>
                 </div>
@@ -76,8 +72,7 @@
                                     <button class="btn btn-primary" style="background:#B43A10">Update </button>
                                 </td>
                                 <td>
-                                    <button onclick="toDelete(this)" class="btn btn-primary"
-                                        style="background:#B43A10">Delete</button>
+                                    <button onclick="toDelete(this)" class="btn btn-primary" style="background:#B43A10">Delete</button>
                                 </td>
                             </tr>
                             <tr class="body">
