@@ -1,0 +1,109 @@
+<!-- SOURCES:
+  https://getbootstrap.com/docs/4.3/
+  https://jquery.com/download/ (3.4.1)
+  https://www.w3schools.com/html/html_form_elements.asp
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Build Your Own Pizza's Website</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/context.css">
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/employee.js"></script>
+    <!-- load the nav bar-->
+    <script>
+        $(document).ready(async function () {
+            await $("#navBar").load("layout.html")
+        });
+    </script>
+</head>
+
+<body>
+    <span id="navBar"></span>
+    <div class="row">
+        <div class="col text-center">
+            <h2 style="padding-top: 2.7rem">Add/Update/Delete Pizza Sizes</h2>
+            <form>
+                <div class="container" style="padding-top: .5rem">
+                    <div class="form-row align-items-center">
+                        <div class="col-md-5 text-center mx-auto">
+                            <label for="sizeName" style="padding-bottom: .5rem"><strong>Size Name</strong></label>
+                            <input type="text" class="form-control mb-2" id="sizeName"
+                                placeholder="Please enter small, medium, or large">
+                        </div>
+                        <div class="col-md-5 text-center mx-auto">
+                            <label for="sizePrice" style="padding-bottom: .5rem"><strong>Price</strong></label>
+                            <select id="sizePrice" class="form-control mb-2">
+                                <option value="10">small ($10)</option>
+                                <option value="13">medium ($13)</option>
+                                <option value="16">large ($16)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-5 text-center mx-auto" style="padding-top: 1rem">
+                            <button type="submit" class="btn btn-primary" style="background:#B43A10">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="container" style="padding-top: 2.5rem">
+                <div class="row">
+                    <table class="text-center mx-auto; table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Size Name</th>
+                                <th>Price</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="body">
+                                <td>small</td>
+                                <td>10</td>
+                                <td>
+                                    <button class="btn btn-primary" style="background:#B43A10">Update </button>
+                                </td>
+                                <td>
+                                    <button onclick="toDelete(this)" class="btn btn-primary"
+                                        style="background:#B43A10">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="body">
+                                <td>medium</td>
+                                <td>13</td>
+                                <td>
+                                    <button class="btn btn-primary" style="background:#B43A10">Update</button>
+                                </td>
+                                <td>
+                                    <button onclick="toDelete(this)" class="btn btn-primary" style="background:#B43A10">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="body">
+                                <td>large</td>
+                                <td>16</td>
+                                <td>
+                                    <button class="btn btn-primary" style="background:#B43A10">Update</button>
+                                </td>
+                                <td>
+                                    <button onclick="toDelete(this)" class="btn btn-primary" style="background:#B43A10">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+</body>
+
+</html>
