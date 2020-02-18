@@ -31,11 +31,14 @@ function BuildToppingsTable(){
         .append($('<th>')
 
         .text("Topping Description"))
+        .append($('<th>')
+        .text("Update"))
+        .append($('<th>')
+        .text("Delete"))
     )
 
   for(var i in ToppingsList){
       var top = ToppingsList[i];
-      console.log(top)
       $("#toppingsTable").find('tbody')
         .append($('<tr>')
             .append($('<td>')
