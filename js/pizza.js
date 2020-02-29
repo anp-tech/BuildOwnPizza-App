@@ -18,7 +18,6 @@ window.onload = async ()=>{
         return;
     }
 
-
     //A new pizza object for the customer's cart. Goes away if page is reloaded
     CustomerOrders = new Order();
 
@@ -41,11 +40,10 @@ function BuildToppingsDropdowns(){
     var toppingDropdowns = ["#topping1Dropdown", "#topping2Dropdown", "#topping3Dropdown",
                             "#updateTopping1Dropdown",  "#updateTopping2Dropdown",
                             "#updateTopping3Dropdown" ];
-
     for(var d in toppingDropdowns){
         var dropdown = $(toppingDropdowns[d]);
         for(var k in PizzaToppings){
-            var top = PizzaToppings[k];
+            var top = PizzaToppings[k].toppingName;
             dropdown.append(
                      $('<option></option>').val(top).html(top)
             )
@@ -125,7 +123,7 @@ function BindButtons(){
          if(ValidateOrder()){
              SubmitOrderAjax();
              $('#checkoutModal').modal('hide');
-             window.location.href = "index.html"
+
          }
     });
 }
@@ -135,10 +133,10 @@ function BindButtons(){
 function ValidateOrder(){
     var name = $("#customerName").val();
     var check = $("#agreeCheckbox").is(":checked");
-    console.log(check)
     isValid = true;
     if(name != undefined && name != null && name.length > 0){
         isValid = true;
+        CustomerOrders.CustomerName = name;
         $("#nameValidationMessage").css("display", "none")
     }
     else{
@@ -161,8 +159,64 @@ function ValidateOrder(){
 
 
 //Takes the customers order and makes an AJAX post to update the database
-function SubmitOrderAjax(){
-    window.location.reload(true);
+async function SubmitOrderAjax(){
+
+    //format the data to submit via ajax
+    var pizzasToSubmit = [];
+    var customerName = CustomerOrders.CustomerName;
+    for(var i in CustomerOrders.Pizzas){
+
+        var sId = _GetSizeIDFromName(CustomerOrders.Pizzas[i].size);
+        var t1Id = _GetToppingIDFromName(CustomerOrders.Pizzas[i].topping1);
+        var t2Id = _GetToppingIDFromName(CustomerOrders.Pizzas[i].topping2);
+        var t3Id = _GetToppingIDFromName(CustomerOrders.Pizzas[i].topping3);
+        var toppingInfo = {
+            customerName:customerName,
+            sizeID:sId,
+            topping1ID:t1Id,
+            topping2ID:t2Id,
+            topping3ID:t3Id,
+        };
+        pizzasToSubmit.push(toppingInfo);
+    }
+
+    //make the ajax post to submit the pizzas
+    try{
+        let result;
+         result = await $.ajax({
+            url:"server/addPizzas.php",
+            type:"POST",
+            data: {data:pizzasToSubmit},
+        });
+         window.location.href = "index.html"
+        console.log(result)
+    }
+    catch(error){
+        console.error(error);
+    }
+
+}
+
+
+function _GetToppingIDFromName(topping){
+    for(var i in PizzaToppings){
+        var t = PizzaToppings[i]
+        if(PizzaToppings[i].toppingName == topping){
+            return PizzaToppings[i].toppingID;
+        }
+    }
+    return -1;
+}
+
+
+function _GetSizeIDFromName(name){
+    for(var i in PizzaSizes){
+        var p = PizzaSizes[i]
+        if(p.name == name){
+            return p.id
+        }
+    }
+    return -1; //pizza not found
 }
 
 
@@ -255,7 +309,6 @@ function UpdatePizza(div){
     let p = CustomerOrders.getPizzaByName(pizzaName);
     $("#updateTopping1Dropdown").val(p.topping1);
     $("#updateTopping2Dropdown").val(p.topping2);
-    console.log(p.topping3)
     $("#updateTopping3Dropdown").val(p.topping3);
     $("#updatePizzaSizeDropdown").val(p.size);
 
@@ -287,14 +340,46 @@ function ResetDropdowns(){
 
 
 //makes ajax GET to get all the pizza sizes. Returns them as an array wher.
-function GetPizzaSizesAJAX(){
-     return [{name:"small", price:"10"}, {name:"medium", price:"13"}, {name:"large", price:"16"}];
+async function GetPizzaSizesAJAX(){
+
+     let results
+     results = await $.ajax({
+         url: "server/getSizes.php",
+         type: "GET"
+     });
+     results = JSON.parse(results)
+
+     var resultsArr = []
+
+     for(var i in results){
+         var row = {id:results[i].sizeID, name:results[i].sizeName, price:results[i].price}
+    resultsArr.push(row);
+     }
+
+      return resultsArr
 }
 
 
 //makes ajax GET request to get all the available pizza toppings. Returns an array
-function GetPizzaToppingsAJAX(){
-    return  ["pepperoni", "chicken", "bacon", "artichoke"];
+async function GetPizzaToppingsAJAX(){
+    //for now we just return the global array of toppings.
+    let results;
+    results = await $.ajax({
+        url: "server/getToppings.php",
+        type: "GET"
+    });
+    results = JSON.parse(results);
+    var toppingsList = [];
+    for(var i in results){
+        var toppingData = {
+                      toppingID: results[i].toppingID,
+                      toppingName:  results[i].toppingName,
+                      toppingDescription: results[i].toppingDescription
+                  }
+        toppingsList.push(toppingData)
+    }
+
+    return toppingsList;
 }
 
 
@@ -304,6 +389,7 @@ class Order{
         this.PizzaCount = 0;
         this.PizzaIndex = 0;
         this.Pizzas = [];
+        this.CustomerName = null;
     }
 
    addPizza(newPizza){

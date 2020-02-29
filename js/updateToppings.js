@@ -1,21 +1,21 @@
 //A global var to hold the pizza toppins as returned by GetToppingsAjax
 var ToppingsList = [];
 
-window.onload = ()=>{
-    //init the list of toppings. Note: this will eventuall come from the database
-    InitToppingsList();
-
-    ToppingsList = GetToppingsAjax();
-
+window.onload = async ()=>{
+    ToppingsList = await GetToppingsAjax();
+    ToppingsList = JSON.parse(ToppingsList)
     BuildToppingsTable();
 }
 
 
 
 //will make an ajax request to query for the list of pizza toppings. We make this request again whenever an item is added to the table.
-function GetToppingsAjax(){
+ async function GetToppingsAjax(){
     //for now we just return the global array of toppings.
-    return ToppingsList;
+    return await $.ajax({
+        url: "server/getToppings.php",
+        type: "GET"
+    });
 }
 
 
@@ -36,42 +36,43 @@ function BuildToppingsTable(){
         .append($('<th>')
         .text("Delete"))
     )
-
+ console.log(ToppingsList)
   for(var i in ToppingsList){
       var top = ToppingsList[i];
+      //console.log(top)
       $("#toppingsTable").find('tbody')
         .append($('<tr>')
             .append($('<td>')
                 .append($('<span>')
-                    .text(top.Name)
-                    .attr('id', top.Id + "_name")
+                    .text(top.toppingName)
+                    .attr('id', top.toppingID + "_name")
                 )
             )
             .append($('<td>')
                 .append($('<span>')
-                    .text(top.Description)
-                    .attr('id', top.Id + "_description")
+                    .text(top.toppingDescription)
+                    .attr('id', top.toppingID + "_description")
                 )
             )
             .append($('<td>')
                 .append($('<button>')
                     .text("Update")
-                    .attr('id', top.Id + "_update")
+                    .attr('id', top.toppingID + "_update")
                     .attr('class', "btn btn-secondary")
                     .attr('style', "background:#B43A10")
-                    .attr('onclick', "UpdateButtonClickAction("+top.Id+")")
+                    .attr('onclick', "UpdateButtonClickAction("+top.toppingID+")")
                 )
             )
             .append($('<td>')
                 .append($('<button>')
                     .text("Delete")
-                    .attr('id', top.Id + "_delete")
+                    .attr('id', top.toppingID + "_delete")
                     .attr('class', "btn btn-secondary")
                     .attr('style', "background:#B43A10")
-                    .attr('onclick', "DeleteButtonClickAction("+top.Id+")")
+                    .attr('onclick', "DeleteButtonClickAction("+top.toppingID+")")
                 )
             )
-            .attr('id', top.Id)
+            .attr('id', top.toppingID)
         ).attr('id', "toppingsTableBody");
   }
 
@@ -79,8 +80,20 @@ function BuildToppingsTable(){
 
 
 //Makes an ajax post to add a new topping from the input fields. After we update the db, we rebuild the table
-function AddToppingAjax(toppingName, toppingDes){
-
+async function AddToppingAjax(toppingName, toppingDes){
+    data = {toppingName:toppingName,toppingDescription:toppingDes};
+    let result;
+   try{
+      result = await $.ajax({
+         url:"server/addTopping.php",
+         type:"POST",
+         data:data
+      });
+      return result;
+   }
+   catch(error){
+       console.error(error);
+   }
 }
 
 
@@ -156,29 +169,11 @@ async function AddToppingButtonClickAction(){
     if(des == undefined || des == null || des == "") return;
 
     await AddToppingAjax(name, des);
-
+    
     //refresh the page so the updated table gets built
-    window.location.reload();
+    window.location.reload(); FIXME
 
 
-
-}
-
-
-
-function InitToppingsList(){
-
-    let t1 = new Topping(1, "Chicken", "Our Amazing Roasted Chicken");
-    let t2 = new Topping(2, "Pepperoni", "Our Spicy Italian Pepperoni");
-    let t3 = new Topping(3, "Bacon", "It's worth the heart attack!");
-    let t4 = new Topping(4, "Canadian Bacon", "Sweet and savory");
-    let t5 = new Topping(5, "Artichoke", "Goes great with bacon");
-
-    ToppingsList[0] = t1
-    ToppingsList[1] = t2
-    ToppingsList[2] = t3
-    ToppingsList[3] = t4
-    ToppingsList[4] = t5
 
 }
 
