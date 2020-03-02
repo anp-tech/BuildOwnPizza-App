@@ -14,7 +14,6 @@ window.onload = async ()=>{
     //for now we just return the global array of sizes.
     return await $.ajax({
         url: "server/getPizzaOrders.php",
-     //   url: "server/getToppings.php",
         type: "GET"
     });
 }
@@ -26,23 +25,17 @@ function BuildViewCustomerOrdersTable() {
   $("#viewCustomerOrders").find('tbody')
     .append($('<tr>')
         .append($('<th>')
-
         .text("TimeStamp"))
+        
         .append($('<th>')
-
         .text("Customer Name"))
+
         .append($('<th>')
 
         .text("Size"))
         .append($('<th>')
 
-        .text("Topping 1"))
-        .append($('<th>')
-
-        .text("Topping 2"))
-        .append($('<th>')
-
-        .text("Topping 3"))
+        .text("Topping"))
         .append($('<th>')
 
         .text("Has Been Made"))
@@ -51,57 +44,54 @@ function BuildViewCustomerOrdersTable() {
         .text("Delete"))
     )
 
-    console.log(viewCustomerOrdersArr)
+/*<ul class="dropdown-menu">
+      <input class="form-control" id="myInput" type="text" placeholder="Search..">
+      <li><a href="#">HTML</a></li>
+      <li><a href="#">CSS</a></li>
+      <li><a href="#">JavaScript</a></li>
+      <li><a href="#">jQuery</a></li>
+      <li><a href="#">Bootstrap</a></li>
+      <li><a href="#">Angular</a></li>
+*/
+
   for(var i in viewCustomerOrdersArr){
       var top = viewCustomerOrdersArr[i];
-      //console.log(top)
-      $("#pizzasTable").find('tbody')
+      console.log(top)
+      $("#viewCustomerOrders").find('tbody')
         .append($('<tr>')
             .append($('<td>')
                 .append($('<span>')
                     .text(top.timeStamp)
-                    .attr('id', top.pizzaID + "_timeStamp")
+                    .attr('pd', top.pizzaID + "_timeStamp")
                 )
             )
             .append($('<td>')
                 .append($('<span>')
                     .text(top.customerName)
-                    .attr('id', top.pizzaID + "_customerName")
+                    .attr('pid', top.pizzaID + "_customerName")
                 )
             )
     
             .append($('<td>')
                 .append($('<span>')
                     .text(top.sizeName)
-                    .attr('id', top.pizzaID + "_sizeName")
+                    .attr('pid', top.pizzaID + "_sizeName")
                 )
             )
-            
+           
             .append($('<td>')
                 .append($('<span>')
                     .text(top.toppingName)
-                    .attr('id', top.PizzaToppings + "_toppingName")
+                    .attr('id', top.toppingID + "_toppingName")
                 )
             )
 
             .append($('<td>')
-                .append($('<span>')
-                    .text(top.toppingName)
-                    .attr('id', top.PizzaToppings + "_toppingName")
-                )
-            )
-
-            .append($('<td>')
-                .append($('<span>')
-                    .text(top.toppingName)
-                    .attr('id', top.PizzaToppings + "_toppingName")
-                )
-            )
-
-            .append($('<td>')
-                .append($('<span>')
-                    .text(top.hasBeenMade)
-                    .attr('id', top.pizzaID + "_hasBeenMade")
+                .append($('<input type="checkbox">')
+                    .append($('<span>')
+                        .text(top.hasBeenMade)
+                        .attr('id', top.pizzaID + "_hasBeenMade")
+                    )
                 )
             )
 
@@ -114,6 +104,7 @@ function BuildViewCustomerOrdersTable() {
                     .attr('onclick', "DeleteButtonClickAction("+top.pizzaID+")")
                 )
             )
+        
             .attr('id', top.pizzaID)
         ).attr('id', "viewCustomerOrdersTableBody");
   }
