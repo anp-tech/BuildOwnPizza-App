@@ -44,16 +44,6 @@ function BuildViewCustomerOrdersTable() {
         .text("Delete"))
     )
 
-/*<ul class="dropdown-menu">
-      <input class="form-control" id="myInput" type="text" placeholder="Search..">
-      <li><a href="#">HTML</a></li>
-      <li><a href="#">CSS</a></li>
-      <li><a href="#">JavaScript</a></li>
-      <li><a href="#">jQuery</a></li>
-      <li><a href="#">Bootstrap</a></li>
-      <li><a href="#">Angular</a></li>
-*/
-
   for(var i in viewCustomerOrdersArr){
       var top = viewCustomerOrdersArr[i];
       console.log(top)
