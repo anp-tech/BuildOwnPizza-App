@@ -1,0 +1,58 @@
+<!--
+This page is for employees to select which employee page they want to view:
+  1. pizzaOrders
+  2. updateToppings
+  3. updateSizes
+-->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Build Your Own Pizza's Website</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/context.css">
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+             $("#navBar").load("layout.html")
+    });
+
+
+    window.onload = ()=>{
+        $('#viewOrdersButton').on('click', function(event) {
+            window.location.href = "pizzaOrders.html"
+       });
+       $('#viewToppingsButton').on('click', function(event) {
+           window.location.href = "updateToppings.html"
+      });
+      $('#viewSizesButton').on('click', function(event) {
+          window.location.href = "updateSizes.html"
+     });
+    }
+
+
+ </script>
+
+
+</head>
+
+<body>
+   <span id="navBar"></span>
+
+   <h3 style="margin-left:35%; margin-top:50px">
+       Welcome to the Employees Page
+       </h3>
+       <div class="btn-group"  style="margin-left:28%; margin-top:50px">
+         <button id="viewOrdersButton" style="width:205px; background:#B43A10; margin-left:10%; margin-right:20px; background:#B43A10; ; height:150px" class="btn btn-secondary">View Customer Orders</button>
+         <button id="viewToppingsButton" style="width:170px; background:#B43A10; margin-left:10% background:#B43A10;margin-right:20px ; height:150px" class="btn btn-secondary">Add/Update/Delete Pizza Toppings</button>
+         <button id="viewSizesButton" style="width:170px; background:#B43A10; margin-left:10% background:#B43A10; ; height:150px" class="btn btn-secondary">Add/Update/Delete Pizza Sizes </button>
+       </div>
+
+</body>
+</html>
