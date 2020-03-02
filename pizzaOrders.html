@@ -19,7 +19,8 @@
    <!-- JS -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-   <script src="js/employee.js"></script>
+   <script src="js/viewPizzaOrders.js"></script>
+<!--   <script src="js/pizza.js.js"></script> -->
    <!-- load the nav bar-->
  <script>
      $(document).ready(function(){
@@ -35,64 +36,17 @@
       <div class="col text-center">
       <h2 style="padding-top: 1.5rem">Delete Orders After Pizza Pick-Up</h2>
       <p style="padding-top: 1.5rem"><small>(Note: the table will be populated from database, below data is just a sample)</small></p>
-      <table class="col text-center; table table-bordered">
-         <thead>
-           <tr>
-             <th>Timestamp</th>
-             <th>Customer Name</th>
-             <th>Size</th>
-             <th>Topping 1</th>
-             <th>Topping 2</th>
-             <th>Topping 3</th>
-             <th> Has Been Made </th>
-             <th> Delete </th>
-           </tr>
-         </thead>
-         <tbody>
-           <tr class="body">
-             <td>00:30:12 ago</td>
-             <td>John Doe</td>
-             <td>small</td>
-             <td>pepperoni</td>
-             <td></td>
-             <td></td>
-             <td>
-              <input type="checkbox">
-             <td>
-              <button onclick="toDelete(this)" class="btn btn-primary" style="background:#B43A10">Delete</button>
-             </td>
-           </tr>
-          <tr class="body">
-            <td>01:03:01 ago</td>
-            <td>Thomas Smith</td>
-            <td>medium</td>
-            <td>chicken</td>
-            <td>bacon</td>
-            <td></td>
-            <td>
-             <input type="checkbox">
-            <td>
-             <button onclick="toDelete(this)" class="btn btn-primary" style="background:#B43A10">Delete</button>
-            </td>
-          </tr>
-          <tr class="body">
-            <td>02:08:09 ago</td>
-            <td>Jacky Wong</td>
-            <td>large</td>
-            <td>bacon</td>
-            <td>pepperoni</td>
-            <td>artichoke</td>
-            <td>
-             <input type="checkbox">
-            <td>
-             <button onclick="toDelete(this)" class="btn btn-primary" style="background:#B43A10">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-       </table>
-       </div>
-      </div>
-     </div>
+    </div>
+  </div>
+ </div>
 
+  <div class="container" style="margin-top:30px; width:65%; margin-left:18%; ">
+        <table class='table' id ="viewCustomerOrders">
+            <tr>
+            </tr>
+        </table>
+    </div>
+   
+   
 </body>
 </html>
