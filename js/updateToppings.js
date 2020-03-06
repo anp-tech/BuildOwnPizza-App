@@ -125,8 +125,9 @@ async function SubmitToppingChanges(){
 
     //make ajax request to update the db. Then rebuild the table with the new data.
     var res = await UpdateToppingAjax(toppingID, newToppingName, newToppingDescription);
-    if(res != 'success'){
+    if(JSON.parse(res) != 'success'){
         alert('failed to update the pizza topping');
+        console.log(res)
     }
     else{
         location.reload()
@@ -168,7 +169,6 @@ async function DeleteTopping(){
    }
    else{
        console.error("error running delete query");
-       console.log(res)
    }
 }
 
