@@ -19,7 +19,7 @@ window.onload = async ()=>{
 
 //takes the data stored in the ToppinsList global array, and builds it into the sizes table.
 function BuildSizesTable(){
-  $("#sizesTableBody").html(""); 
+  $("#sizesTableBody").html("");
 
   $("#sizesTable").find('tbody')
     .append($('<tr>')
@@ -34,7 +34,7 @@ function BuildSizesTable(){
         .append($('<th>')
         .text("Delete"))
     )
- 
+
     console.log(SizesArr)
   for(var i in SizesArr){
       var top = SizesArr[i];
@@ -95,8 +95,20 @@ async function AddSizeAjax(Name, Price){
 
 
 //makes ajax request to update a size when user clicks the update button on the modal
-function UpdateSizeAjax(){
+async function UpdateSizeAjax(sizeID, sizeName, price){
+    console.log(price)
+   let postData = {
+       sizeID: sizeID,
+       sizeName: sizeName,
+       price: price
+   };
 
+   let response = await $.ajax({
+       url: "server/updateSize.php",
+       type: "POST",
+       data: postData
+   });
+   return await response
 }
 
 
@@ -105,13 +117,16 @@ async function SubmitSizeChanges(){
 
     $('#updateSizeModal').modal('hide');
 
+    let sizeID = $("#updateId").val();
+    let sizeName = $("#updateName").val();
+    let price = $("#updatePrice").val();
+
     //make ajax request to update the db. Then rebuild the table with the new data.
-    await UpdateSizeAjax();
-
-    SizesArr = await GetSizesAjax();
-
-    await BuildSizesTable();
-;
+    let res = await UpdateSizeAjax(sizeID, sizeName, price);
+    if(JSON.parse(res) != "success"){
+        console.error("error updating pizza size")
+    }
+    location.reload();
 }
 
 
@@ -119,14 +134,13 @@ async function SubmitSizeChanges(){
 async function UpdateButtonClickAction(rowId){
      $('#updateSizeModal').modal('show');
 
-     let nameRowId = rowId + "_name"
-     let name = document.getElementById(nameRowId).innerText;
+    //set the hidden value to keep track of the size that is being updated in the modal
+    $('#updateId').val(rowId)
 
-     let descriptionRowId = rowId + "_price"
-     let description = document.getElementById(descriptionRowId).innerText;
-
+     let name = document.getElementById(rowId + "_name").innerText;
+     let price = document.getElementById(rowId + "_price").innerText;
      $("#updateName").val(name)
-     $("#updateDescription").val(description)
+     $("#updatePrice").val(price)
      $("#updateId").val(rowId) //hiden field to track the id of the updated size
 
 
@@ -138,22 +152,39 @@ async function DeleteButtonClickAction(rowId){
  $('#confirmDeleteModal').modal('show');
 
  //set the hiden id of the value to be deleted
+ $('#deleteId').val(rowId);
 
 }
 
 
 //makes call to ajax function to delete the size. Also rebuilds the table.
 async function DeleteSize(){
-     $('#confirmDeleteModal').modal('hide');
-   await DeleteSizeAjax();
-   SizesArr = await GetSizesAjax();
-   await BuildSizesTable();
+    $('#confirmDeleteModal').modal('hide');
+
+   let sizeID = $("#deleteId").val();
+    res = await DeleteSizeAjax(sizeID);
+
+   if(JSON.parse(res) != "success"){
+       console.error("Error deleting size")
+   }
+   else{
+       location.reload()
+   }
 }
 
 
 //makes an ajax request to delete a size
-function DeleteSizeAjax(){
+async function DeleteSizeAjax(sizeID){
+  let postData = {
+      sizeID : sizeID
+  }
 
+  let response = await $.ajax({
+      url: "server/deleteSize.php",
+      type: "POST",
+      data: postData
+  });
+  return await response
 }
 
 //This function is called when the Add button is clicked
@@ -165,7 +196,7 @@ async function AddSizeButtonClickAction(){
     if(p == undefined || p == null || p == "") return;
 
     await AddSizeAjax(name, p);
-    
+
     //refresh the page so the updated table gets built
     window.location.reload(); FIXME
 }
