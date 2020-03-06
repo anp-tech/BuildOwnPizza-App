@@ -4,6 +4,7 @@ var viewCustomerOrdersArr = [];
 window.onload = async ()=>{
     viewCustomerOrdersArr = await getOrdersAjax();
     viewCustomerOrdersArr = JSON.parse(viewCustomerOrdersArr)
+    console.log(viewCustomerOrders);
     BuildViewCustomerOrdersTable();
 }
 
@@ -20,7 +21,7 @@ window.onload = async ()=>{
 }
 
 //takes the data stored in the ToppinsList global array, and builds it into the sizes table.
-function BuildViewCustomerOrdersTable() { 
+function BuildViewCustomerOrdersTable() {
   $("#viewCustomerOrdersTableBody").html("");
 
   $("#viewCustomerOrders").find('tbody')
@@ -69,14 +70,14 @@ function BuildViewCustomerOrdersTable() {
                     .attr('id', top.pizzaID + "_customerName")
                 )
             )
-    
+
             .append($('<td>')
                 .append($('<span>')
                     .text(top.sizeName)
                     .attr('id', top.pizzaID + "_sizeName")
                 )
             )
-            
+
             .append($('<td>')
                 .append($('<span>')
                     .text(top.toppingName)
@@ -118,7 +119,3 @@ function BuildViewCustomerOrdersTable() {
         ).attr('id', "viewCustomerOrdersTableBody");
   }
 }
-
-
-
-  

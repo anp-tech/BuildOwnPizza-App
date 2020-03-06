@@ -36,7 +36,6 @@ function BuildToppingsTable(){
         .append($('<th>')
         .text("Delete"))
     )
- console.log(ToppingsList)
   for(var i in ToppingsList){
       var top = ToppingsList[i];
       //console.log(top)
@@ -98,8 +97,20 @@ async function AddToppingAjax(toppingName, toppingDes){
 
 
 //makes ajax request to update a topping when user clicks the update button on the modal
-function UpdateToppingAjax(){
+async function UpdateToppingAjax(toppingID, toppingName, toppingDescription){
 
+   var postData = {
+     toppingID: toppingID,
+     toppingName: toppingName,
+     toppingDescription: toppingDescription
+   };
+
+    let response = await $.ajax({
+        url: "server/updateTopping.php",
+        type: "POST",
+        data: postData
+    });
+    return await response
 }
 
 
@@ -108,13 +119,18 @@ async function SubmitToppingChanges(){
 
     $('#updateToppingModal').modal('hide');
 
+    let toppingID = $('#updateId').val()
+    let newToppingName = $('#updateName').val();
+    let newToppingDescription = $('#updateDescription').val();
+
     //make ajax request to update the db. Then rebuild the table with the new data.
-    await UpdateToppingAjax();
-
-    ToppingsList = await GetToppingsAjax();
-
-    await BuildToppingsTable();
-;
+    var res = await UpdateToppingAjax(toppingID, newToppingName, newToppingDescription);
+    if(res != 'success'){
+        alert('failed to update the pizza topping');
+    }
+    else{
+        location.reload()
+    }
 }
 
 
@@ -131,8 +147,6 @@ async function UpdateButtonClickAction(rowId){
      $("#updateName").val(name)
      $("#updateDescription").val(description)
      $("#updateId").val(rowId) //hiden field to track the id of the updated topping
-
-
 }
 
 
@@ -141,22 +155,38 @@ async function DeleteButtonClickAction(rowId){
  $('#confirmDeleteModal').modal('show');
 
  //set the hiden id of the value to be deleted
-
+ $("#toppingIDToDelete").val(rowId);
 }
 
 
 //makes call to ajax function to delete the topping. Also rebuilds the table.
 async function DeleteTopping(){
      $('#confirmDeleteModal').modal('hide');
-   await DeleteToppingAjax();
-   ToppingsList = await GetToppingsAjax();
-   await BuildToppingsTable();
+   let res = await DeleteToppingAjax();
+   if(JSON.parse(res) == "success"){
+       location.reload();
+   }
+   else{
+       console.error("error running delete query");
+       console.log(res)
+   }
 }
 
 
 //makes an ajax request to delete a topping
-function DeleteToppingAjax(){
+async function DeleteToppingAjax(){
+    let toppingID = $("#toppingIDToDelete").val();
 
+    var postData = {
+      toppingID: toppingID,
+    };
+
+     let response = await $.ajax({
+         url: "server/deleteTopping.php",
+         type: "POST",
+         data: postData
+     });
+     return await response
 }
 
 
@@ -169,7 +199,7 @@ async function AddToppingButtonClickAction(){
     if(des == undefined || des == null || des == "") return;
 
     await AddToppingAjax(name, des);
-    
+
     //refresh the page so the updated table gets built
     window.location.reload(); FIXME
 

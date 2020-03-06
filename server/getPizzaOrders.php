@@ -15,10 +15,11 @@ function GetPizzaOrders() {
   $pizzaOrdersArray = array();
 
   $query = "SELECT p.pizzaID, p.sizeID, IFNULL(pt.toppingID, 0) as toppingID, p.timeStamp, p.customerName, sizeName, IFNULL(toppingName, 'pizza with no toppings') AS toppingName, p.hasBeenMade FROM Sizes s LEFT JOIN Pizzas p on s.sizeID = p.sizeID LEFT JOIN PizzaToppings pt on pt.pizzaID = p.pizzaID LEFT JOIN Toppings t ON t.toppingID = pt.toppingID ORDER BY p.pizzaID, t.toppingName;";
-  
+
   if($res = $con->query($query)) {
       while($row = $res->fetch_assoc()) {
-          $pizzaOrdersData = new PizzaSize($row["p.pizzaID"], $row["p.sizeID"], $row["pt.toppingID"], $row["p.timeStamp"], $row["p.customerName"], $row["sizeName"],$row["toppingName"], $row["p.hasBeenMade"]);
+
+          $pizzaOrdersData = new Pizza($row["pizzaID"], $row["sizeID"], $row["toppingID"], $row["timeStamp"], $row["customerName"], $row["sizeName"],$row["toppingName"], $row["hasBeenMade"]);
           array_push($pizzaOrdersArray, $pizzaOrdersData);
       }
   }
