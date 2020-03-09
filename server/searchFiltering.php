@@ -1,4 +1,5 @@
 <?php
+// Source: https://stackoverflow.com/questions/5279079/mysql-convert-timediff-output-to-day-hour-minute-second-format
 
 include_once("getDBConnection.php");
 
