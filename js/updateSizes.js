@@ -159,7 +159,7 @@ async function DeleteButtonClickAction(rowId){
 
 //makes call to ajax function to delete the size. Also rebuilds the table.
 async function DeleteSize(){
-    $('#confirmDeleteModal').modal('hide');
+   $('#confirmDeleteModal').modal('hide');
 
    let sizeID = $("#deleteId").val();
     res = await DeleteSizeAjax(sizeID);
