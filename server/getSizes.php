@@ -20,9 +20,8 @@ echo(json_encode($pizzaSizeData));
 //returns an array of 'PizzaSize' objects with id, size and price for that pizza
 function GetPizzaSizes(){
   $con = getDBConnection();
-  $sizesArray = array();
-
   $query = "SELECT sizeID, sizeName, price FROM Sizes;";
+  $sizesArray = [];
   if($res = $con->query($query)){
       while($row = $res->fetch_assoc()){
           $sizeData = new PizzaSize($row["sizeID"], $row["sizeName"], $row["price"]);
@@ -46,6 +45,4 @@ class PizzaSize{
     public $sizeName;
     public $price;
 }
-
-
 ?>
