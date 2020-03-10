@@ -4,12 +4,13 @@ async function UpdatePizzaOrderAjax(pizzaID){
     let result;
 
    try{
-       result = await $.ajax({
+         result = await $.ajax({
          url:"server/updatePizza.php",
          type:"POST",
          data:data
       });
       console.log(result);
+      location.reload()
    }
    catch(error){
        console.error(error);
