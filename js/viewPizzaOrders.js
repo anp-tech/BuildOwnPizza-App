@@ -1,4 +1,25 @@
+async function UpdatePizzaOrderAjax(pizzaID){
+    hasBeenMade = document.getElementById(pizzaID.toString() + "_hasBeenMade").checked;
+    data = {pizzaID:pizzaID, hasBeenMade:hasBeenMade};
+    let result;
+
+   try{
+       result = await $.ajax({
+         url:"server/updatePizza.php",
+         type:"POST",
+         data:data
+      });
+      console.log(result);
+   }
+   catch(error){
+       console.error(error);
+   }
+}
+
 $(document).ready(function(){
+
+
+
 function buildTable(data){
     var table = $("#viewCustomerOrders");
     table.html("");
@@ -10,6 +31,45 @@ function buildTable(data){
     tHead.append($('<th>').text("Has Been Made"))
     tHead.append($('<th>').text("Delete"))
     table.append(tHead);
+
+    if(data.length == 0) return;
+
+    let curPizzaID = data[0].pizzaID;
+    let curToppingsList = ""
+    for(var i in data){
+        //we've moved to the next pizza
+        if(data[i].pizzaID != curPizzaID){
+
+            //remove the trailing space and comma in the toppings list
+            curToppingsList =  curToppingsList.substring(0, curToppingsList.length - 2)
+
+            //build out the row
+            var tRow = $('<tr>');
+            tRow.append($('<td>').text(data[i].timeStamp).attr('id', data[i].pizzaID + "_timeStamp"));
+            tRow.append($('<td>').text(data[i].customerName).attr('id', data[i].pizzaID + "_customerName"));
+            tRow.append($('<td>').text(data[i].sizeName).attr('id', data[i].sizeID + "_sizeName"));
+            tRow.append($('<td>').text(curToppingsList).attr('id', data[i].toppingID + "_toppingName"));
+            tRow.append($('<td>').append($('<input type="checkbox">').text(data[i].hasBeenMade).attr('id', data[i].pizzaID + "_hasBeenMade")
+            .attr("onclick", "UpdatePizzaOrderAjax("+data[i].pizzaID+")")));
+            tRow.append($('<td>').append($('<button>').text("Delete").attr('id', data[i].pizzaID + "_delete")
+            .attr('class', "btn btn-secondary").attr('style', "background:#B43A10")
+            .attr('onclick', "DeleteButtonClickAction("+data[i].pizzaID+")")));
+            table.append(tRow);
+
+            //reset the toppings list for the next pizza
+            curToppingsList = "";
+        }
+
+        //we are still on the same pizza so string the toppings list togther
+        else{
+            curToppingsList += data[i].toppingName + ", "
+        }
+
+        //move to the next item in the list
+        curPizzaID = data[i].pizzaID;
+    }
+
+
     for(var i in data) {
     var viewOrders = data[i];
     var tRow = $('<tr>');
@@ -17,13 +77,16 @@ function buildTable(data){
     tRow.append($('<td>').text(viewOrders.customerName).attr('id', viewOrders.pizzaID + "_customerName"));
     tRow.append($('<td>').text(viewOrders.sizeName).attr('id', viewOrders.sizeID + "_sizeName"));
     tRow.append($('<td>').text(viewOrders.toppingName).attr('id', viewOrders.toppingID + "_toppingName"));
-    tRow.append($('<td>').append($('<input type="checkbox">').text(viewOrders.hasBeenMade).attr('id', viewOrders.pizzaID + "_hasBeenMade")));
+    tRow.append($('<td>').append($('<input type="checkbox">').text(viewOrders.hasBeenMade).attr('id', viewOrders.pizzaID + "_hasBeenMade")
+    .attr("onclick", "UpdatePizzaOrder("+viewOrders.pizzaID+")")));
     tRow.append($('<td>').append($('<button>').text("Delete").attr('id', viewOrders.pizzaID + "_delete")
     .attr('class', "btn btn-secondary").attr('style', "background:#B43A10")
     .attr('onclick', "DeleteButtonClickAction("+viewOrders.pizzaID+")")));
     table.append(tRow);
     };
 }
+
+
 
 $.ajax({
     url: "server/searchFiltering.php?filter=all",
@@ -56,7 +119,7 @@ var checked = this.checked;
     data: {
         pizzaID : pizzaID,
         isChecked : checked,
-        
+
     },
     success: function(data) {
         alert('updated succesfully');
@@ -114,10 +177,10 @@ async function DeletePizzaOrdersAjax(pizzaID){
 //makes call to ajax function to delete the order. Also rebuilds the table.
 async function DeletePizzaOrders(){
     $('#confirmDeleteModal').modal('hide');
- 
+
     let pizzaID = $("#deleteId").val();
      res = await DeletePizzaOrdersAjax(pizzaID);
- 
+
     if(JSON.parse(res) != "success"){
         console.error("Error deleting pizza orders")
     }
