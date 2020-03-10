@@ -43,14 +43,18 @@ function buildTable(data){
 
             //remove the trailing space and comma in the toppings list
             curToppingsList =  curToppingsList.substring(0, curToppingsList.length - 2)
-
+           console.log(data[i].hasBeenMade)
+           let shouldCheck = true;
+           if(data[i].hasBeenMade == 0){
+               shouldCheck = false;
+           }
             //build out the row
             var tRow = $('<tr>');
             tRow.append($('<td>').text(data[i].timeStamp).attr('id', data[i].pizzaID + "_timeStamp"));
             tRow.append($('<td>').text(data[i].customerName).attr('id', data[i].pizzaID + "_customerName"));
             tRow.append($('<td>').text(data[i].sizeName).attr('id', data[i].sizeID + "_sizeName"));
             tRow.append($('<td>').text(curToppingsList).attr('id', data[i].toppingID + "_toppingName"));
-            tRow.append($('<td>').append($('<input type="checkbox">').text(data[i].hasBeenMade).attr('id', data[i].pizzaID + "_hasBeenMade")
+            tRow.append($('<td>').append($('<input type="checkbox">').attr('id', data[i].pizzaID + "_hasBeenMade").attr("checked",shouldCheck)
             .attr("onclick", "UpdatePizzaOrderAjax("+data[i].pizzaID+")")));
             tRow.append($('<td>').append($('<button>').text("Delete").attr('id', data[i].pizzaID + "_delete")
             .attr('class', "btn btn-secondary").attr('style', "background:#B43A10")
