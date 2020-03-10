@@ -32,73 +32,43 @@ $(document).ready(function(){
         tHead.append($('<th>').text("Delete"))
         table.append(tHead);
 
-        if(data.length == 0) return;
+        //get array of all unique pizza Ids in the list
+        var ids = [];
+        for(var i in data){
+            ids[data[i].pizzaID] = data[i].pizzaID
+        }
 
-        var prev = data[0];
-        var curToppingsList = ""
-        var i = 0
-        for( i =  0; i < data.length; i++){
-            //we've moved to the next pizza
-
-            if(data[i].pizzaID != prev.pizzaID){
-                curToppingsList = curToppingsList.substring(1)
-
-                //remove the trailing space and comma in the toppings list
-            //    curToppingsList =  curToppingsList.substring(0, curToppingsList.length - 2)
-               let shouldCheck = true;
-               if(data[i].hasBeenMade == 0){
-                   shouldCheck = false;
-               }
-               console.log( data[data.length - 1])
-               console.log(data[i])
-               if(data[i].pizzaID != data[data.length - 1].pizzaID){
-                   var tRow = $('<tr>');
-                   tRow.append($('<td>').text(data[i].timeStamp).attr('id', data[i].pizzaID + "_timeStamp"));
-                   tRow.append($('<td>').text(data[i].customerName).attr('id', data[i].pizzaID + "_customerName"));
-                   tRow.append($('<td>').text(data[i].sizeName).attr('id', data[i].sizeID + "_sizeName"));
-                   tRow.append($('<td>').text(curToppingsList).attr('id', data[i].toppingID + "_toppingName"));
-                   tRow.append($('<td>').append($('<input type="checkbox">').attr('id', data[i].pizzaID + "_hasBeenMade").attr("checked",shouldCheck)
-                   .attr("onclick", "UpdatePizzaOrderAjax("+data[i].pizzaID+")")));
-                   tRow.append($('<td>').append($('<button>').text("Delete").attr('id', data[i].pizzaID + "_delete")
-                   .attr('class', "btn btn-secondary").attr('style', "background:#B43A10")
-                   .attr('onclick', "DeleteButtonClickAction("+data[i].pizzaID+")")));
-                   table.append(tRow);
-               }
-
-
-                  //reset the toppings list for the next pizza
-                  curToppingsList = "";
-             }
-
-
-            //we are still on the same pizza so string the toppings list togther
-            else{
-                curToppingsList  =  curToppingsList + "," +  data[i].toppingName;
+        for(var k in ids){
+            toppingList = "";
+            var cur = null;
+            for(var a in data){
+                if(ids[k] == data[a].pizzaID){
+                    cur = data[a]
+                    toppingList += ", " + data[a].toppingName;
+                }
+            }
+            console.log(cur.customerName)
+            toppingList = toppingList.slice(2)
+            var shouldCheck = true;
+            if(cur.hasBeenMade == 0){
+                shouldCheck = false
             }
 
-            //move to the next item in the list
-            prev = data[i];
-        }
+            var tRow = $('<tr>');
+            tRow.append($('<td>').text(cur.timeStamp).attr('id', cur.pizzaID + "_timeStamp"));
+            tRow.append($('<td>').text(cur.customerName).attr('id', cur.pizzaID + "_customerName"));
+            tRow.append($('<td>').text(cur.sizeName).attr('id', cur.sizeID + "_sizeName"));
+            tRow.append($('<td>').text(toppingList).attr('id', cur.toppingID + "_toppingName"));
+            tRow.append($('<td>').append($('<input type="checkbox">').attr('id', cur.pizzaID + "_hasBeenMade").attr("checked",shouldCheck)
+            .attr("onclick", "UpdatePizzaOrderAjax("+cur.pizzaID+")")));
+            tRow.append($('<td>').append($('<button>').text("Delete").attr('id', cur.pizzaID + "_delete")
+            .attr('class', "btn btn-secondary").attr('style', "background:#B43A10")
+            .attr('onclick', "DeleteButtonClickAction("+cur.pizzaID+")")));
+            table.append(tRow);
+            toppings = "";
 
-        //add the last row that wasn't included above
-        if(data[i - 1].hasBeenMade == 0){
-            shouldCheck = false;
+            console.log(toppingList)
         }
-        curToppingsList  =  (curToppingsList + ", " +  data[i - 1].toppingName).substring(1);
-        var tRow = $('<tr>');
-        tRow.append($('<td>').text(data[i - 1].timeStamp).attr('id', data[i - 1].pizzaID + "_timeStamp"));
-        tRow.append($('<td>').text(data[i - 1].customerName).attr('id', data[i - 1].pizzaID + "_customerName"));
-        tRow.append($('<td>').text(data[i - 1].sizeName).attr('id', data[i - 1].sizeID + "_sizeName"));
-        tRow.append($('<td>').text(curToppingsList).attr('id', data[i - 1].toppingID + "_toppingName"));
-        tRow.append($('<td>').append($('<input type="checkbox">').attr('id', data[i - 1].pizzaID + "_hasBeenMade").attr("checked",shouldCheck)
-        .attr("onclick", "UpdatePizzaOrderAjax("+data[i - 1].pizzaID+")")));
-        tRow.append($('<td>').append($('<button>').text("Delete").attr('id', data[i - 1].pizzaID + "_delete")
-        .attr('class', "btn btn-secondary").attr('style', "background:#B43A10")
-        .attr('onclick', "DeleteButtonClickAction("+data[i - 1].pizzaID+")")));
-        table.append(tRow);
-
-       //reset the toppings list for the next pizza
-       curToppingsList = "";
 
     }
 
