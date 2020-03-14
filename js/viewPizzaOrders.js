@@ -1,3 +1,4 @@
+//
 async function UpdatePizzaOrderAjax(pizzaID){
     hasBeenMade = document.getElementById(pizzaID.toString() + "_hasBeenMade").checked;
     data = {pizzaID:pizzaID, hasBeenMade:hasBeenMade};
@@ -18,7 +19,6 @@ async function UpdatePizzaOrderAjax(pizzaID){
 }
 
 $(document).ready(function(){
-
 
     function buildTable(data){
         var table = $("#viewCustomerOrders");
@@ -69,13 +69,10 @@ $(document).ready(function(){
 
             console.log(toppingList)
         }
-
     }
 
-
-
 $.ajax({
-    url: "server/searchFiltering.php?filter=all",
+    url: "server/searchFiltering.php?sF=allOrders",
     type: "GET",
     success:function(data) {
         var dt = JSON.parse(data);
@@ -83,10 +80,10 @@ $.ajax({
     }
 })
 
-$("#filter").on("change", function() {
-    var filter = $(this).val();
+$("#searchFilter").on("change", function() {
+    var searchFilter = $(this).val();
     $.ajax({
-    url: "server/searchFiltering.php?filter="+filter,
+    url: "server/searchFiltering.php?sF="+searchFilter,
     type: "GET",
     success:function(data) {
             var dt = JSON.parse(data);
@@ -94,49 +91,7 @@ $("#filter").on("change", function() {
     }
     })
 })
-
-// HasBeenMade
-$("input[type=checkbox]").change(function() {
-var checked = this.checked;
-    $.ajax({
-    url: "server/hasBeenMade.php?",
-    type: "POST",
-    dataType: 'json',
-    data: {
-        pizzaID : pizzaID,
-        isChecked : checked,
-
-    },
-    success: function(data) {
-        alert('updated succesfully');
-    },
-    error: function(data) {
-        alert('could not be updated');
-    }
-});
-});
-
-$("input[type=checkbox").change(function() {
-var unChecked = !this.checked;
-    $.ajax({
-    url: "server/hasBeenMade.php",
-    type: "POST",
-    dataType: 'json',
-    data: {
-        pizzaID : pizzaID,
-        isNotChecked : unChecked,
-    },
-    success: function(data) {
-        alert('updated succesfully');
-    },
-    error: function(data) {
-        alert('could not be updated');
-    }
-});
-});
-
 })
-
 
 //function is called when a delete button is clicked. Then we requery for the table data and build it
 async function DeleteButtonClickAction(rowId){
