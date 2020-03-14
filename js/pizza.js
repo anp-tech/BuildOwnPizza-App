@@ -73,6 +73,12 @@ function BuildPizzaSizesDropdown(){
 //Handles the onclick actions for the buttons.
 function BindButtons(){
 
+    //Redirect to home page when closing the confirmation modal 
+    $("#orderConfirmationModal").on('hidden.bs.modal', function(){
+      window.location.href = "index.html"
+    });
+
+
     //clicking the "createPizzaButton" will reset the dropdowns in the modal. Also disables the "addToCartButton"
     $("#createPizzaButton").click(function(){
         ResetDropdowns();
@@ -188,8 +194,8 @@ async function SubmitOrderAjax(){
             type:"POST",
             data: {data:pizzasToSubmit},
         });
-         window.location.href = "index.html"
-        console.log(result)
+              $("#orderConfirmationModal").modal('show');
+         //window.location.href = "index.html"
     }
     catch(error){
         console.error(error);
