@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -12,24 +13,45 @@
   <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
    <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+
+    //highlight the current item in the nav bar
+        $('#home').addClass('active')
+        const PAGES = ['index.html', 'about.html', 'pizza.html', 'employee.html', 'updateSizes.html', 'updateToppings.html', 'pizzaOrders.html'];
+        const navIds = ["home", "about", "build", "employee", "employee", "employee", "employee"];
+        for(var i in navIds){
+            var foo = document.getElementById("home");
+            console.log(foo)
+            $('#' + navIds[i]).removeClass('active')
+        }
+         var selection = location.href.toString().split("/");
+         selection = selection[selection.length - 1];
+         for(var i = 0; i < PAGES.length; i++){
+
+             if(selection == PAGES[i]){
+                $('#' + navIds[i]).addClass('active');
+             }
+         }
+         
+  </script>
+  <style>
+
+  </style>
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-light navbar-static-top">
-      <div class="container">
-        <div class="collapse navbar-collapse" id="navProject">
-          <div class="navbar-nav" style="margin-left:62px">
-             <a id="home" class="nav-item mx-auto nav-link active "href="index.html">Home</a>
-             <a id="about" class="nav-item mx-auto nav-link" href="about.html">About</a>
-            <a id="build" class="nav-item mx-auto nav-link" href="pizza.html">Customer</a>
-            <a id="employee" class="nav-item mx-auto nav-link" href="employee.html">Employee</a>
-          </div>
-          <div class="navbar-nav ml-auto">
-              <span style="font-weight:bold">  Build Your Own Pizza</span>
-        </div>
-        </div>
-      </div>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <ul id="layoutNavBar" class="nav navbar-nav" style="margin-left:165px">
+              <li><a id="home" class="nav-item mx-auto nav-link "href="index.html">Home</a></li>
+              <li><a id="about" class="nav-item mx-auto nav-link" href="about.html">About</a></li>
+              <li><a id="build" class="nav-item mx-auto nav-link" href="pizza.html">Customer</a></li>
+              <li><a id="employee" class="nav-item mx-auto nav-link" href="employee.html">Employee</a></li>
+          </ul>
+          <div class="navbar-nav ml-auto" style="margin-right:75px">
+               <span style="font-weight:bold">  Build Your Own Pizza</span>
+         </div>
+
     </nav>
 </body>
