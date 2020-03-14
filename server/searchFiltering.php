@@ -3,48 +3,48 @@
 
 include_once("getDBConnection.php");
 
-if(isset($_GET["filter"])){
-    $filter = trim($_GET["filter"]);
-    if(!empty($_GET["filter"])) {
+if(isset($_GET["sF"])){
+    $sF = trim($_GET["sF"]);
+    if(!empty($_GET["sF"])) {
         $con = getDBConnection();
-        if($filter == "all") {
+        if($sF == "allOrders") {
             $stmn = $con->prepare("SELECT p.pizzaID, s.sizeID, t.toppingID, CONCAT(TIMESTAMPDIFF(day, p.timeStamp, CURRENT_TIME) , 'd ',
             MOD( TIMESTAMPDIFF(hour, p.timeStamp, CURRENT_TIME), 24), 'hr ',
-            MOD( TIMESTAMPDIFF(minute, p.timeStamp, CURRENT_TIME), 60), 'mn ') as timeStamp, p.customerName, s.sizeName, t.toppingName, p.hasBeenMade FROM Pizzas p
+            MOD( TIMESTAMPDIFF(minute, p.timeStamp, CURRENT_TIME), 60), 'mn ') as timeStamp, p.customerName, s.sizeName, IFNULL(t.toppingName, ''), p.hasBeenMade FROM Pizzas p
             LEFT JOIN PizzaToppings pt on pt.pizzaID = p.pizzaID
             LEFT JOIN Toppings t ON t.toppingID = pt.toppingID
             LEFT JOIN Sizes s on s.sizeID = p.sizeID
             ORDER BY p.pizzaID, t.toppingName;");
-        } else if ($filter == "1") {
+        } else if ($sF == "1") {
                 $stmn = $con->prepare("SELECT p.pizzaID, s.sizeID, t.toppingID, CONCAT(TIMESTAMPDIFF(day, p.timeStamp, CURRENT_TIME) , 'd ',
                 MOD( TIMESTAMPDIFF(hour, p.timeStamp, CURRENT_TIME), 24), 'hr ',
-                MOD( TIMESTAMPDIFF(minute, p.timeStamp, CURRENT_TIME), 60), 'mn ') as timeStamp, p.customerName, s.sizeName, t.toppingName, p.hasBeenMade FROM Pizzas p
+                MOD( TIMESTAMPDIFF(minute, p.timeStamp, CURRENT_TIME), 60), 'mn ') as timeStamp, p.customerName, s.sizeName, IFNULL(t.toppingName, ''), p.hasBeenMade FROM Pizzas p
                 LEFT JOIN PizzaToppings pt on pt.pizzaID = p.pizzaID
                 LEFT JOIN Toppings t ON t.toppingID = pt.toppingID
                 LEFT JOIN Sizes s on s.sizeID = p.sizeID
                 WHERE TIMESTAMPDIFF(hour, p.timeStamp, CURRENT_TIME) <= ?
                 ORDER BY p.pizzaID, t.toppingName;");
-                $stmn->bind_param("i", $filter);      
-        } else if ($filter == "2") {
+                $stmn->bind_param("i", $sF);      
+        } else if ($sF == "2") {
                 $stmn = $con->prepare("SELECT p.pizzaID, s.sizeID, t.toppingID, CONCAT(TIMESTAMPDIFF(day, p.timeStamp, CURRENT_TIME) , 'd ',
                 MOD( TIMESTAMPDIFF(hour, p.timeStamp, CURRENT_TIME), 24), 'hr ',
-                MOD( TIMESTAMPDIFF(minute, p.timeStamp, CURRENT_TIME), 60), 'mn ') as timeStamp, p.customerName, s.sizeName, t.toppingName, p.hasBeenMade FROM Pizzas p
+                MOD( TIMESTAMPDIFF(minute, p.timeStamp, CURRENT_TIME), 60), 'mn ') as timeStamp, p.customerName, s.sizeName, IFNULL(t.toppingName, ''), p.hasBeenMade FROM Pizzas p
                 LEFT JOIN PizzaToppings pt on pt.pizzaID = p.pizzaID
                 LEFT JOIN Toppings t ON t.toppingID = pt.toppingID
                 LEFT JOIN Sizes s on s.sizeID = p.sizeID
                 WHERE TIMESTAMPDIFF(hour, p.timeStamp, CURRENT_TIME) <=? 
                 ORDER BY p.pizzaID, t.toppingName;");
-                $stmn->bind_param("i", $filter);
+                $stmn->bind_param("i", $sF);
         } else{
                 $stmn = $con->prepare("SELECT p.pizzaID, s.sizeID, t.toppingID, CONCAT(TIMESTAMPDIFF(day, p.timeStamp, CURRENT_TIME) , 'd ',
                 MOD( TIMESTAMPDIFF(hour, p.timeStamp, CURRENT_TIME), 24), 'hr ',
-                MOD( TIMESTAMPDIFF(minute, p.timeStamp, CURRENT_TIME), 60), 'mn ') as timeStamp, p.customerName, s.sizeName, t.toppingName, p.hasBeenMade FROM Sizes s
+                MOD( TIMESTAMPDIFF(minute, p.timeStamp, CURRENT_TIME), 60), 'mn ') as timeStamp, p.customerName, s.sizeName, IFNULL(t.toppingName, ''), p.hasBeenMade FROM Sizes s
                 LEFT JOIN Pizzas p on s.sizeID = p.sizeID
                 LEFT JOIN PizzaToppings pt on pt.pizzaID = p.pizzaID
                 LEFT JOIN Toppings t ON t.toppingID = pt.toppingID
                 WHERE TIMESTAMPDIFF(hour, p.timeStamp, CURRENT_TIME) >=?
                 ORDER BY p.pizzaID, t.toppingName;");
-                $stmn->bind_param("i", $filter);
+                $stmn->bind_param("i", $sF);
         };
         $stmn->execute();
         $stmn->store_result();
