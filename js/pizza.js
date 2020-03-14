@@ -8,7 +8,6 @@ var CustomerOrders = null;  //an object of type Order that tracks the created pi
 //onload event handler
 window.onload = async ()=>{
 
-
     //Make AJAX request to load pizza data
     try{
         PizzaSizes = await GetPizzaSizesAJAX();
