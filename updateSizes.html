@@ -31,13 +31,13 @@
 
 <body>
   <span id="navBar"></span>
-  <h3 style="margin-left:30%; margin-top:40px">
+  <h3 class= "col text-center"style="padding-top: 1.8rem">
     Add/Update/Delete Pizza Sizes
   </h3>
-  <div class="container" style="margin-top:50px; margin-left:29%">
+  <div class="container">
 
-    <div class="row">
-      <div class="col-lg-4">
+    <div class="row" style="margin-top:50px; margin-left:20%">
+      <div class="col-lg-6">
         <label for="sizeName"><b>Size Name:</b></label>
         <div>
           <input style="width:84%" type="text" class="form-control" id="sizeName"
@@ -55,11 +55,13 @@
       </div>
     </div>
   </div>
-  <div class="container" style="margin-top:30px; width:56%; margin-left:28%; ">
+  <div class="container">
+    <div class="row" style="margin-top:30px; width:70%; margin-left:20%">
     <table class='table' id="sizesTable">
       <tr>
       </tr>
     </table>
+  </div>
   </div>
 
   <!-- Modal for when the user updates a row in the sizes table  -->
@@ -83,7 +85,7 @@
                 <input type="text" class="form-control" id="updateName" placeholder="Size Name" name="updateName">
               </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-5">
               <label for="updatePrice"><b>Price:</b></label>
               <div>
                 <input type="text" class="form-control" id="updatePrice" placeholder="Price" name="updatePrice">
