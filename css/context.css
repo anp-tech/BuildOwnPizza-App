@@ -1,13 +1,23 @@
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #fdf2f2;
+    font-family: 'Volkhov', serif;
+    background-color: azure;
 }
+
+p {
+    line-height: 2;
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+  }
 
 .bg-light {
-    background: rgb(151, 74, 22) !important;
+    background:azure !important;
 }
 
-.indent { margin-left: 50px; };
+.indent { margin-left: 45px; };
+.indent1 { margin-left: 10px; };
 
 .navbar-brand {
     padding-top: 0%;
