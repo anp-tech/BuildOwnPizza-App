@@ -1,23 +1,17 @@
 body {
     font-family: 'Volkhov', serif;
-    background-color: azure;
+    background-color: #fdf2f2;
 }
 
 p {
     line-height: 2;
 }
 
-.responsive {
-    width: 100%;
-    height: auto;
-  }
-
 .bg-light {
-    background:azure !important;
+    background: rgb(175, 87, 28) !important;
 }
 
 .indent { margin-left: 45px; };
-.indent1 { margin-left: 10px; };
 
 .navbar-brand {
     padding-top: 0%;
