@@ -73,7 +73,7 @@ function BuildPizzaSizesDropdown(){
 //Handles the onclick actions for the buttons.
 function BindButtons(){
 
-    //Redirect to home page when closing the confirmation modal 
+    //Redirect to home page when closing the confirmation modal
     $("#orderConfirmationModal").on('hidden.bs.modal', function(){
       window.location.href = "index.html"
     });
@@ -245,6 +245,9 @@ function LoadCheckoutModal(){
         innerHtml += '<ul>'
         innerHtml += '<li>'
         innerHtml += "Toppings: " + topping1 + ", " + topping2 + ", " + topping3;
+        if(innerHtml[innerHtml.length - 2] == ','){
+            innerHtml = innerHtml.replace(/,\s*$/, "");
+        }
         innerHtml += '</li>'
         innerHtml += '<li>'
         innerHtml += "Size: " + p.size.toString();

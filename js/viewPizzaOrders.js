@@ -37,17 +37,15 @@ $(document).ready(function(){
         for(var i in data){
             ids[data[i].pizzaID] = data[i].pizzaID
         }
-
         for(var k in ids){
             toppingList = "";
             var cur = null;
             for(var a in data){
                 if(ids[k] == data[a].pizzaID){
                     cur = data[a]
-                    toppingList += ", " + data[a].toppingName;
+                    toppingList += ", " + " ("+ data[a].quantity.toString() + ") " + data[a].toppingName;
                 }
             }
-            console.log(cur.customerName)
             toppingList = toppingList.slice(2)
             var shouldCheck = true;
             if(cur.hasBeenMade == 0){
@@ -66,8 +64,6 @@ $(document).ready(function(){
             .attr('onclick', "DeleteButtonClickAction("+cur.pizzaID+")")));
             table.append(tRow);
             toppings = "";
-
-            console.log(toppingList)
         }
     }
 
@@ -76,18 +72,29 @@ $.ajax({
     type: "GET",
     success:function(data) {
         var dt = JSON.parse(data);
-        buildTable(dt);
+        if(dt == "error"){
+            console.error("Server error getting pizzas using search filter");
+        }
+        else{
+            buildTable(dt);
+        }
     }
 })
 
 $("#searchFilter").on("change", function() {
+    console.log("changed")
     var searchFilter = $(this).val();
     $.ajax({
     url: "server/searchFiltering.php?sF="+searchFilter,
     type: "GET",
     success:function(data) {
             var dt = JSON.parse(data);
+
             buildTable(dt);
+
+    },
+    error:function(e){
+        console.error(e)
     }
     })
 })
