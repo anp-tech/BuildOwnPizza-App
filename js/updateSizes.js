@@ -35,10 +35,9 @@ function BuildSizesTable(){
         .text("Delete"))
     )
 
-    console.log(SizesArr)
   for(var i in SizesArr){
       var top = SizesArr[i];
-      //console.log(top)
+
       $("#sizesTable").find('tbody')
         .append($('<tr>')
             .append($('<td>')
@@ -78,6 +77,7 @@ function BuildSizesTable(){
 
 //Makes an ajax post to add a new size from the input fields. After we update the db, we rebuild the table
 async function AddSizeAjax(Name, Price){
+
     data = {sizeName:Name, price:Price};
     let result;
    try{
@@ -96,11 +96,11 @@ async function AddSizeAjax(Name, Price){
 
 //makes ajax request to update a size when user clicks the update button on the modal
 async function UpdateSizeAjax(sizeID, sizeName, price){
-    console.log(price)
+
    let postData = {
        sizeID: sizeID,
        sizeName: sizeName,
-       price: price
+       price:price
    };
 
    let response = await $.ajax({
@@ -120,6 +120,9 @@ async function SubmitSizeChanges(){
     let sizeID = $("#updateId").val();
     let sizeName = $("#updateName").val();
     let price = $("#updatePrice").val();
+
+    //convert to float. Will be 0.00 if the string conatins illigal characters.
+    price = parseFloat(price);
 
     //make ajax request to update the db. Then rebuild the table with the new data.
     let res = await UpdateSizeAjax(sizeID, sizeName, price);
@@ -198,7 +201,7 @@ async function AddSizeButtonClickAction(){
     await AddSizeAjax(name, p);
 
     //refresh the page so the updated table gets built
-    window.location.reload(); FIXME
+    window.location.reload();
 }
 
 class Size{
