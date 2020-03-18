@@ -11,7 +11,7 @@ include_once("getDBConnection.php");
 //for now make sure there are no weird characters in the post data. More validation later
 $sizeID =            $_POST['sizeID'];
 $sizeName =         preg_replace("/[^A-Za-z0-9 ]/", '', $_POST['sizeName']);
-$price =  preg_replace("/[^A-Za-z0-9 ]/", '', $_POST['price']);
+$price = $_POST['price']; 
 
 
 function UpdateTopping($sizeID, $sizeName, $price){

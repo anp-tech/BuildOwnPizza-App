@@ -52,6 +52,10 @@ $(document).ready(function(){
                 shouldCheck = false
             }
 
+            if(toppingList.includes("(0)")){
+                toppingList = "None";
+            }
+
             var tRow = $('<tr>');
             tRow.append($('<td>').text(cur.timeStamp).attr('id', cur.pizzaID + "_timeStamp"));
             tRow.append($('<td>').text(cur.customerName).attr('id', cur.pizzaID + "_customerName"));

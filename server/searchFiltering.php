@@ -9,12 +9,12 @@ if(isset($_GET["sF"])){
         $con = getDBConnection();
 
    //build out the query string
-    $q = "SELECT  p.pizzaID, s.sizeID, t.toppingID, pt.quantity, ";
+    $q = "SELECT  p.pizzaID, IFNULL(s.sizeID, 0) AS sizeID, IFNULL(t.toppingID, 0) AS toppingID, IFNULL(pt.quantity, 0) AS quantity, ";
     $q .= "CONCAT(TIMESTAMPDIFF(day, p.timeStamp, CURRENT_TIME) , 'd ', MOD( TIMESTAMPDIFF(hour, p.timeStamp, CURRENT_TIME), 24), 'hr ',MOD( TIMESTAMPDIFF(minute, p.timeStamp, CURRENT_TIME), 60), 'mn ') as timeStamp,";
     $q .= "p.customerName, s.sizeName, IFNULL(t.toppingName, '') as toppingName, p.hasBeenMade FROM Pizzas p ";
-    $q .= "INNER JOIN PizzaToppings pt on pt.pizzaID = p.pizzaID ";
-    $q .= "INNER JOIN Toppings t on t.toppingID = pt.toppingID ";
-    $q .= "INNER JOIN Sizes s on s.sizeID = p.sizeID ";
+    $q .= "LEFT JOIN PizzaToppings pt on pt.pizzaID = p.pizzaID ";
+    $q .= "LEFT JOIN Toppings t on t.toppingID = pt.toppingID ";
+    $q .= "LEFT JOIN Sizes s on s.sizeID = p.sizeID ";
 
     if($sF != "allOrders"){
      $q .= 'WHERE p.timeStamp >=  NOW() - INTERVAL ' . $sF . ' HOUR  ';

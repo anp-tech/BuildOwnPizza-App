@@ -96,7 +96,6 @@ async function AddSizeAjax(Name, Price){
 
 //makes ajax request to update a size when user clicks the update button on the modal
 async function UpdateSizeAjax(sizeID, sizeName, price){
-
    let postData = {
        sizeID: sizeID,
        sizeName: sizeName,
