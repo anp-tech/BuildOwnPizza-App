@@ -196,7 +196,7 @@ async function AddToppingButtonClickAction(){
     if(name == undefined || name == null || name == "") return;
 
     let des = $("#toppingDescription").val();
-    if(des == undefined || des == null || des == "") return;
+    if(des == undefined || des == null) return;
 
     await AddToppingAjax(name, des);
 
