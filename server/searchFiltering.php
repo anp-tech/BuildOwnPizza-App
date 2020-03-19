@@ -8,7 +8,7 @@ if(isset($_GET["sF"])){
     if(!empty($_GET["sF"])) {
         $con = getDBConnection();
 
-   //build out the query string
+   // build out the query string for a search filter (for orders to be filtered by timestamp)
     $q = "SELECT  p.pizzaID, IFNULL(s.sizeID, 0) AS sizeID, IFNULL(t.toppingID, 0) AS toppingID, IFNULL(pt.quantity, 0) AS quantity, ";
     $q .= "CONCAT(TIMESTAMPDIFF(day, p.timeStamp, CURRENT_TIME) , 'd ', MOD( TIMESTAMPDIFF(hour, p.timeStamp, CURRENT_TIME), 24), 'hr ',MOD( TIMESTAMPDIFF(minute, p.timeStamp, CURRENT_TIME), 60), 'mn ') as timeStamp,";
     $q .= "p.customerName, s.sizeName, IFNULL(t.toppingName, '') as toppingName, p.hasBeenMade FROM Pizzas p ";
@@ -21,7 +21,7 @@ if(isset($_GET["sF"])){
     }
     $q .= " ORDER BY p.pizzaID, t.toppingID ";
 
-    //perform the query
+    // perform the query
     $pizzasArray = array();
     if($res = $con->query($q)){
         while($row = $res->fetch_assoc()){

@@ -1,6 +1,6 @@
 <?php
 /*********************************************************************
-This is the server API for updating a pizza's hasBeenMade attrubute
+This is the server API for updating a pizza's hasBeenMade attribute
 Params:
 1) pizzaID. Value true or false
 *********************************************************************/

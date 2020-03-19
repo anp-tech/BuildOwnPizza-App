@@ -1,4 +1,4 @@
-//
+// update each pizza that has been made by checking a checkbox once the pizza is made
 async function UpdatePizzaOrderAjax(pizzaID){
     hasBeenMade = document.getElementById(pizzaID.toString() + "_hasBeenMade").checked;
     data = {pizzaID:pizzaID, hasBeenMade:hasBeenMade};
@@ -18,6 +18,7 @@ async function UpdatePizzaOrderAjax(pizzaID){
    }
 }
 
+// take the data stored and build into the View Customer Orders table
 $(document).ready(function(){
 
     function buildTable(data){
@@ -71,6 +72,7 @@ $(document).ready(function(){
         }
     }
 
+// will make an ajax request to query for the list of pizza orders (filtered by timestamp)
 $.ajax({
     url: "server/searchFiltering.php?sF=allOrders",
     type: "GET",

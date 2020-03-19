@@ -17,7 +17,7 @@ window.onload = async ()=>{
     });
 }
 
-//takes the data stored in the ToppinsList global array, and builds it into the sizes table.
+//takes the data stored in the SizesArr global array, and builds it into the sizes table.
 function BuildSizesTable(){
   $("#sizesTableBody").html("");
 
