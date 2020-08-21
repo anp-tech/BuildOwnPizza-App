@@ -3,25 +3,9 @@ body {
     background-color: #fdf2f2;
 }
 
-p {
-    line-height: 2;
-}
-
-.bg-light {
-    background: rgb(175, 87, 28) !important;
-}
-
-.indent { margin-left: 45px; };
-
-.navbar-brand {
-    padding-top: 0%;
-    font-size: 1.4rem;
-}
-
-.navbar-brand:hover {
-    border-bottom: 2.5px solid rgb(32, 13, 201);
-
-}
+ .navbar {
+    background: rgb(214, 114, 46);
+  }
 
 .navbar-dark .navbar-nav .nav-link {
     color: white;
@@ -29,34 +13,13 @@ p {
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
-    border-bottom: 2.5px solid rgb(32, 13, 201);
+    border-bottom: 2.5px solid 
 }
 
-#myCarouselSlide {
-    width: 100%;
-    height: 556px;
+.image {
+    margin:auto;
+    width:100vw;
+    height:90.9vh;
 }
 
-.carousel-inner {
-    height: 100%;
-    min-height: 100vh;
-}
 
-.carousel-item {
-    background-position: 100%;
-    background-size: cover;
-    height: 100vh;
-}
-
-.carousel-caption h5 {
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-.carousel-item.active, .carousel-item-prev, .carousel-item-next {
-    transition: transform 4s ease, opacity 1s ease-out;
-}
-
-.genericButton{
-     background:#B43A10
-}
