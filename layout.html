@@ -3,55 +3,60 @@
 
 <head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Build Your Own Pizza's Website</title>
-  <!-- CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/context.css">
-  <!-- GOOGLE FONTS -->
-  <link href="https://fonts.googleapis.com/css?family=Volkhov&display=swap" rel="stylesheet">
-   <!-- JS -->
-
-
-  <script type="text/javascript">
-
-    //highlight the current item in the nav bar
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Build Your Own Pizza's Website</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/context.css">
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Volkhov&display=swap" rel="stylesheet">
+    <!-- JS -->
+    <script type="text/javascript">
+        //highlight the current item in the nav bar
         $('#home').addClass('active')
-        const PAGES = ['index.html', 'about.html', 'pizza.html', 'employee.html', 'updateSizes.html', 'updateToppings.html', 'pizzaOrders.html'];
+        const PAGES = ['index.html', 'about.html', 'pizza.html', 'employee.html', 'updateSizes.html',
+            'updateToppings.html', 'pizzaOrders.html'
+        ];
         const navIds = ["home", "about", "build", "employee", "employee", "employee", "employee"];
-        for(var i in navIds){
+        for (var i in navIds) {
             var foo = document.getElementById("home");
-            
+
             $('#' + navIds[i]).removeClass('active')
         }
-         var selection = location.href.toString().split("/");
-         selection = selection[selection.length - 1];
-         for(var i = 0; i < PAGES.length; i++){
+        var selection = location.href.toString().split("/");
+        selection = selection[selection.length - 1];
+        for (var i = 0; i < PAGES.length; i++) {
 
-             if(selection == PAGES[i]){
+            if (selection == PAGES[i]) {
                 $('#' + navIds[i]).addClass('active');
-             }
-         }
-
-  </script>
-  <style>
-
-  </style>
+            }
+        }
+    </script>
 
 </head>
+
 <body>
     <nav class="navbar navbar-expand-md navbar-light">
-        <ul id="layoutNavBar" class="nav navbar-nav" style="margin-left:165px">
-              <li><a id="home" class="nav-item mx-auto nav-link" href="index.html" style="font-size:14.3pt"><b>Home</b></a></li>
-              <li><a id="about" class="nav-item mx-auto nav-link" href="about.html" style="font-size:14.3pt"><b>About</b></a></li>
-              <li><a id="build" class="nav-item mx-auto nav-link" href="pizza.html" style="font-size:14.3pt"><b>Customer</b></a></li>
-              <li><a id="employee" class="nav-item mx-auto nav-link" href="employee.html" style="font-size:14.3pt"><b>Employee</b></a></li>
-          </ul>
-          <div class="navbar-nav ml-auto" style="margin-right:75px">
-               <span style="font-size:16.5pt"><b>Build Your Own Pizza</b></span>
-         </div>
-
+        <span style="font-size:16.2pt; margin-left:125px"><b>Build Your Own Pizza</b></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul id="layoutNavBar" class="nav navbar-nav ml-4 nav-justified">
+                <li><a id="home" class="nav-item mx-auto nav-link" href="index.html"
+                        style="font-size:14.3pt"><b>Home</b></a></li>
+                <li><a id="about" class="nav-item mx-auto nav-link" href="about.html"
+                        style="font-size:14.3pt"><b>About</b></a></li>
+                <li><a id="build" class="nav-item mx-auto nav-link" href="pizza.html"
+                        style="font-size:14.3pt"><b>Customer</b></a></li>
+                <li><a id="employee" class="nav-item mx-auto nav-link" href="employee.html"
+                        style="font-size:14.3pt"><b>Employee</b></a></li>
+            </ul>
+        </div>
     </nav>
 </body>
+
+</html>

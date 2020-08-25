@@ -25,15 +25,8 @@
 
 <body>
   <span id="navBar"></span>
-
-  <div class="container">
-    <div class="row">
-      <div class="col text-center">
-        <h2 style="padding-top: 1.5rem">Delete Orders After Pizza Pick-Up</h2>
-      </div>
-    </div>
-  </div>
-
+  <h4 class= "col text-center" style="padding-top: 3rem">Delete Orders After Pizza Pick-Up</h4>
+  
   <!-- search/filter for orders to be filtered by timestamp -->
   <div class="container" style="margin-top:30px; width:65%; margin-left:18%;">
     <select id="searchFilter">
@@ -45,13 +38,15 @@
   </div>
 
   <!-- View Customer Orders Table-->
-  <div class="container" style="margin-top:30px; width:65%; margin-left:18%; ">
-    <table class='table' id="viewCustomerOrders">
-      <tr>
-      </tr>
-    </table>
+  <div class="container">
+    <div class="row" style="margin-top:30px; width:70%; margin-left:20%; ">
+      <table class='table' id="viewCustomerOrders">
+        <tr>
+        </tr>
+      </table>
+    </div>
   </div>
-
+  
   <!-- Modal to confirm if user really wants to delete topping  -->
   <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">

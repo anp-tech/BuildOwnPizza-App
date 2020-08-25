@@ -4,6 +4,7 @@ This page is for employees to select which employee page they want to view:
   2. updateToppings.html
   3. updateSizes.html
 -->
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,42 +18,36 @@ This page is for employees to select which employee page they want to view:
   <!-- JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-<script>
-    $(document).ready(function(){
-             $("#navBar").load("layout.html")
+  <script>
+    $(document).ready(function () {
+      $("#navBar").load("layout.html")
     });
-
-
-    window.onload = ()=>{
-        $('#viewOrdersButton').on('click', function(event) {
-            window.location.href = "pizzaOrders.html"
-       });
-       $('#viewToppingsButton').on('click', function(event) {
-           window.location.href = "updateToppings.html"
+    window.onload = () => {
+      $('#viewOrdersButton').on('click', function (event) {
+        window.location.href = "pizzaOrders.html"
       });
-      $('#viewSizesButton').on('click', function(event) {
-          window.location.href = "updateSizes.html"
-     });
+      $('#viewToppingsButton').on('click', function (event) {
+        window.location.href = "updateToppings.html"
+      });
+      $('#viewSizesButton').on('click', function (event) {
+        window.location.href = "updateSizes.html"
+      });
     }
-
-
- </script>
-
+  </script>
 
 </head>
 
 <body>
-   <span id="navBar"></span>
+  <span id="navBar"></span>
 
-   <h3 style="margin-left:35%; margin-top:50px">
-       Welcome to the Employees Page
-       </h3>
-       <div class="btn-group"  style="margin-left:29%; margin-top:50px">
-        <button id="viewOrdersButton" style="width:170px; background: #B43A10; margin-left:10%; margin-right:20px; background: #B43A10; height:150px" class="btn btn-secondary">View Update/Delete Customer Orders</button>
-        <button id="viewToppingsButton" style="width:170px; background: #B43A10; margin-left:10% #B43A10; margin-right:20px; height:150px" class="btn btn-secondary">Add/View Update/Delete Pizza Toppings</button>
-        <button id="viewSizesButton" style="width:170px; background: #B43A10; margin-left:10% #B43A10; height:150px" class="btn btn-secondary">Add/View Update/Delete Pizza Sizes </button>
-       </div>
-
+  <div class="btn-group btn-group-justified" style="margin-top:100px; margin-left:14.5%">
+    <button id="viewOrdersButton" style="width:165px; background: #B43A10; margin-right:10px; height:160px"
+      class="btn btn-secondary">View Update/Delete Customer Orders</button>
+    <button id="viewToppingsButton" style="width:165px; background: #B43A10; margin-right:10px; height:160px"
+      class="btn btn-secondary">Add/View Update/Delete Pizza Toppings</button>
+    <button id="viewSizesButton" style="width:165px; background: #B43A10; margin-right:10px; height:160px"
+      class="btn btn-secondary">Add/View Update/Delete Pizza Sizes </button>
+  </div>
 </body>
+
 </html>
